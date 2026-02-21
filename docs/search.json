@@ -1,0 +1,205 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "",
+    "text": "Efficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance.\n\n\n\n\nThe dataset contains 2,000 daily observations including:\n\nTemperature (°C)\nHumidity (%)\nWind speed (km/h)\nRainfall (mm)\nTree age (years)\nSoil type (categorical)\nGrowth stage (categorical)\nTarget: water_need_liters\n\n\n\n\n\nTable 1: Descriptive statistics of numeric variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntemperature_c\nhumidity_pct\nwind_speed_kmh\nrainfall_mm\ntree_age_years\nwater_need_liters\n\n\n\n\ncount\n2000\n2000\n2000\n2000\n2000\n2000\n\n\nmean\n27.61\n55.25\n7.65\n2.96\n14.81\n3.6\n\n\nstd\n7.01\n17.72\n7.81\n2.86\n8.39\n3.05\n\n\nmin\n5\n10\n0\n0\n1\n0\n\n\n25%\n22.98\n42.9\n2.1\n0.98\n8\n1\n\n\n50%\n27.8\n55.25\n5.3\n2.1\n15\n3.2\n\n\n75%\n32.2\n67.3\n10.2\n4.1\n22\n5.5\n\n\nmax\n48\n98\n45\n19\n29\n19.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Pearson correlation matrix.\n\n\n\n\n\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
+  },
+  {
+    "objectID": "index.html#problem-statement",
+    "href": "index.html#problem-statement",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "",
+    "text": "Efficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance."
+  },
+  {
+    "objectID": "index.html#dataset-description",
+    "href": "index.html#dataset-description",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "",
+    "text": "The dataset contains 2,000 daily observations including:\n\nTemperature (°C)\nHumidity (%)\nWind speed (km/h)\nRainfall (mm)\nTree age (years)\nSoil type (categorical)\nGrowth stage (categorical)\nTarget: water_need_liters\n\n\n\n\n\nTable 1: Descriptive statistics of numeric variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntemperature_c\nhumidity_pct\nwind_speed_kmh\nrainfall_mm\ntree_age_years\nwater_need_liters\n\n\n\n\ncount\n2000\n2000\n2000\n2000\n2000\n2000\n\n\nmean\n27.61\n55.25\n7.65\n2.96\n14.81\n3.6\n\n\nstd\n7.01\n17.72\n7.81\n2.86\n8.39\n3.05\n\n\nmin\n5\n10\n0\n0\n1\n0\n\n\n25%\n22.98\n42.9\n2.1\n0.98\n8\n1\n\n\n50%\n27.8\n55.25\n5.3\n2.1\n15\n3.2\n\n\n75%\n32.2\n67.3\n10.2\n4.1\n22\n5.5\n\n\nmax\n48\n98\n45\n19\n29\n19.3"
+  },
+  {
+    "objectID": "index.html#correlation-structure",
+    "href": "index.html#correlation-structure",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "",
+    "text": "Figure 1: Pearson correlation matrix.\n\n\n\n\n\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
+  },
+  {
+    "objectID": "index.html#temperaturedemand-relationship",
+    "href": "index.html#temperaturedemand-relationship",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "2.1 Temperature–Demand Relationship",
+    "text": "2.1 Temperature–Demand Relationship\n\n\n\n\n\n\n\n\nFigure 2: Non-linear relationship between temperature and irrigation demand.\n\n\n\n\n\nThe relationship is non-linear and amplified under low humidity conditions."
+  },
+  {
+    "objectID": "index.html#agronomic-segmentation",
+    "href": "index.html#agronomic-segmentation",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "2.2 Agronomic Segmentation",
+    "text": "2.2 Agronomic Segmentation\n\n\n\n\n\n\n\n\nFigure 3: Distribution of water demand across growth stages and soil types.\n\n\n\n\n\nKey finding: Fruiting-stage trees on sandy soils demonstrate the highest median demand."
+  },
+  {
+    "objectID": "index.html#lookup-aggregation",
+    "href": "index.html#lookup-aggregation",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "2.3 Lookup Aggregation",
+    "text": "2.3 Lookup Aggregation\n\n\n\n\nTable 2: Median water demand by temperature band and growth stage.\n\n\n\n\n\n\ngrowth_stage\n&lt;20°C\n20-30°C\n30-40°C\n&gt;40°C\n\n\n\n\nFlowering\n1.5\n3.2\n4.8\n5.4\n\n\nFruiting\n2.4\n3.8\n6.2\n8.6\n\n\nVegetative\n0.6\n2\n3.2\n5"
+  },
+  {
+    "objectID": "index.html#feature-engineering",
+    "href": "index.html#feature-engineering",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "3.2 Feature Engineering",
+    "text": "3.2 Feature Engineering\nCategorical variables were label-encoded for the regression model.\n\n\nTraining samples: 1600\nTesting samples: 400\n\n\n\n\n\n\nTable 3: Model Input Features\n\n\n\n\n\n\nFeature Name\nData Type\nUnit / Description\n\n\n\n\nTemperature\nFloat\nDaily Mean (°C)\n\n\nHumidity\nFloat\nRelative (%)\n\n\nWind Speed\nFloat\nkm/h\n\n\nRainfall\nFloat\nmm/day\n\n\nTree Age\nInteger\nYears since planting\n\n\nSoil Type\nCategorical (Encoded)\nSandy/Loam/Clay\n\n\nGrowth Stage\nCategorical (Encoded)\nPhenological stage"
+  },
+  {
+    "objectID": "index.html#model-selection",
+    "href": "index.html#model-selection",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "3.3 Model Selection",
+    "text": "3.3 Model Selection\nWe selected XGBoost Regressor due to its non-linear modeling capacity and robustness to multicollinearity.\n\n\nTest R²: 0.532\nMAE (L): 1.60\nRMSE (L): 2.02\nCross-validated R²: 0.579"
+  },
+  {
+    "objectID": "index.html#feature-importance",
+    "href": "index.html#feature-importance",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "4.1 Feature Importance",
+    "text": "4.1 Feature Importance\n\n\n\n\n\n\n\n\nFigure 4: Normalized feature importance from XGBoost.\n\n\n\n\n\nTemperature is the dominant explanatory variable, followed by humidity and wind speed."
+  },
+  {
+    "objectID": "index.html#operational-implications",
+    "href": "index.html#operational-implications",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "4.2 Operational Implications",
+    "text": "4.2 Operational Implications\nBased on model outputs:\n\nTemperature Sensitivity: Irrigation demand increases exponentially beyond 30°C.\nGrowth Stages: Fruiting-stage trees require ~30–50% more water than vegetative stage trees.\nSoil Factors: Sandy soils amplify irrigation sensitivity and require more frequent, smaller water applications.\nWind Effect: Wind speeds &gt;15 km/h significantly increase evapotranspiration effects."
+  },
+  {
+    "objectID": "index.html#limitations",
+    "href": "index.html#limitations",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "4.3 4.3 Limitations",
+    "text": "4.3 4.3 Limitations\n\nSynthetic dataset (not field sensor data)\nNo seasonal time-series modeling\nNo soil moisture sensor integration"
+  },
+  {
+    "objectID": "index.html#future-work",
+    "href": "index.html#future-work",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "4.4 4.4 Future Work",
+    "text": "4.4 4.4 Future Work\n\nIncorporate real ET₀ meteorological data\nAdd time-series forecasting\nDeploy real-time dashboard (Marimo or Streamlit)\nIntegrate IoT soil moisture measurements"
+  },
+  {
+    "objectID": "index.html#problem-statement-1",
+    "href": "index.html#problem-statement-1",
+    "title": "```markdown",
+    "section": "7.1 Problem Statement",
+    "text": "7.1 Problem Statement\nEfficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance."
+  },
+  {
+    "objectID": "index.html#dataset-description-1",
+    "href": "index.html#dataset-description-1",
+    "title": "```markdown",
+    "section": "7.2 Dataset Description",
+    "text": "7.2 Dataset Description\nThe dataset contains 2,000 daily observations including:\n\nTemperature (°C)\nHumidity (%)\nWind speed (km/h)\nRainfall (mm)\nTree age (years)\nSoil type (categorical)\nGrowth stage (categorical)\nTarget: water_need_liters\n\nquarto-executable-code-5450563D\n#| label: tbl-describe\n#| tbl-cap: \"Descriptive statistics of numeric variables.\"\n#| echo: false\n\nMarkdown(df.describe().round(2).to_markdown())"
+  },
+  {
+    "objectID": "index.html#correlation-structure-1",
+    "href": "index.html#correlation-structure-1",
+    "title": "```markdown",
+    "section": "7.3 Correlation Structure",
+    "text": "7.3 Correlation Structure\nquarto-executable-code-5450563D\n#| label: fig-corr\n#| fig-cap: \"Pearson correlation matrix.\"\n\nfig_corr = plot_correlation_heatmap(df)\nplt.show()\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
+  },
+  {
+    "objectID": "index.html#temperaturedemand-relationship-1",
+    "href": "index.html#temperaturedemand-relationship-1",
+    "title": "```markdown",
+    "section": "8.1 Temperature–Demand Relationship",
+    "text": "8.1 Temperature–Demand Relationship\nquarto-executable-code-5450563D\n#| label: fig-temp\n#| fig-cap: \"Non-linear relationship between temperature and irrigation demand.\"\n\nfig_temp = plot_temp_vs_water(df)\nplt.show()\nThe relationship is non-linear and amplified under low humidity conditions."
+  },
+  {
+    "objectID": "index.html#agronomic-segmentation-1",
+    "href": "index.html#agronomic-segmentation-1",
+    "title": "```markdown",
+    "section": "8.2 Agronomic Segmentation",
+    "text": "8.2 Agronomic Segmentation\nquarto-executable-code-5450563D\n#| label: fig-growth\n#| fig-cap: \"Distribution of water demand across growth stages and soil types.\"\n\nfig_growth = plot_growth_stage_box(df)\nplt.show()\nKey finding: Fruiting-stage trees on sandy soils demonstrate the highest median demand."
+  },
+  {
+    "objectID": "index.html#lookup-aggregation-1",
+    "href": "index.html#lookup-aggregation-1",
+    "title": "```markdown",
+    "section": "8.3 Lookup Aggregation",
+    "text": "8.3 Lookup Aggregation\nquarto-executable-code-5450563D\n#| label: tbl-lookup\n#| tbl-cap: \"Median water demand by temperature band and growth stage.\"\n#| echo: false\n\nbins = pd.cut(df[\"temperature_c\"], bins=[0, 20, 30, 40, 50],\n              labels=[\"&lt;20°C\", \"20-30°C\", \"30-40°C\", \"&gt;40°C\"])\n\nlookup = (\n    df.assign(temp_band=bins)\n      .groupby([\"growth_stage\", \"temp_band\"], observed=True)\n      [\"water_need_liters\"]\n      .median()\n      .round(1)\n      .unstack()\n)\n\nMarkdown(lookup.to_markdown())"
+  },
+  {
+    "objectID": "index.html#feature-engineering-1",
+    "href": "index.html#feature-engineering-1",
+    "title": "```markdown",
+    "section": "9.2 Feature Engineering",
+    "text": "9.2 Feature Engineering\nCategorical variables were label-encoded for the regression model.\nquarto-executable-code-5450563D\n#| label: feature-engineering\n\n# Create a copy for modeling\ndf_model = df.copy()\n\n# Encode categorical variables\nle_soil = LabelEncoder()\nle_stage = LabelEncoder()\n\ndf_model[\"soil_type_enc\"] = le_soil.fit_transform(df_model[\"soil_type\"])\ndf_model[\"growth_stage_enc\"] = le_stage.fit_transform(df_model[\"growth_stage\"])\n\nfeatures = [\n    \"temperature_c\",\n    \"humidity_pct\",\n    \"wind_speed_kmh\",\n    \"rainfall_mm\",\n    \"tree_age_years\",\n    \"soil_type_enc\",\n    \"growth_stage_enc\",\n]\n\nX = df_model[features]\ny = df_model[\"water_need_liters\"]\n\n# Split data (80% train, 20% test)\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nprint(f\"Training samples: {len(X_train)}\")\nprint(f\"Testing samples: {len(X_test)}\")\nquarto-executable-code-5450563D\n#| label: tbl-features\n#| tbl-cap: \"Model Input Features\"\n#| echo: false\n\nfeature_metadata = pd.DataFrame({\n    \"Feature Name\": [\n        \"Temperature\", \"Humidity\", \"Wind Speed\", \n        \"Rainfall\", \"Tree Age\", \"Soil Type\", \"Growth Stage\"\n    ],\n    \"Data Type\": [\n        \"Float\", \"Float\", \"Float\", \n        \"Float\", \"Integer\", \"Categorical (Encoded)\", \"Categorical (Encoded)\"\n    ],\n    \"Unit / Description\": [\n        \"Daily Mean (°C)\", \"Relative (%)\", \"km/h\", \n        \"mm/day\", \"Years since planting\", \"Sandy/Loam/Clay\", \"Phenological stage\"\n    ]\n})\n\nMarkdown(feature_metadata.to_markdown(index=False))"
+  },
+  {
+    "objectID": "index.html#model-selection-1",
+    "href": "index.html#model-selection-1",
+    "title": "```markdown",
+    "section": "9.3 Model Selection",
+    "text": "9.3 Model Selection\nWe selected XGBoost Regressor due to its non-linear modeling capacity and robustness to multicollinearity.\nquarto-executable-code-5450563D\n#| label: model-training\n\nmodel = XGBRegressor(\n    n_estimators=300,\n    max_depth=5,\n    learning_rate=0.08,\n    random_state=42\n)\n\nmodel.fit(X_train, y_train)\n\ny_pred = model.predict(X_test)\n\nr2 = r2_score(y_test, y_pred)\nmae = mean_absolute_error(y_test, y_pred)\nrmse = np.sqrt(mean_squared_error(y_test, y_pred))\n\ncv_scores = cross_val_score(model, X, y, cv=5, scoring=\"r2\")\n\nprint(f\"Test R²: {r2:.3f}\")\nprint(f\"MAE (L): {mae:.2f}\")\nprint(f\"RMSE (L): {rmse:.2f}\")\nprint(f\"Cross-validated R²: {cv_scores.mean():.3f}\")"
+  },
+  {
+    "objectID": "index.html#feature-importance-1",
+    "href": "index.html#feature-importance-1",
+    "title": "```markdown",
+    "section": "10.1 Feature Importance",
+    "text": "10.1 Feature Importance\nquarto-executable-code-5450563D\n#| label: fig-importance\n#| fig-cap: \"Normalized feature importance from XGBoost.\"\n\nimportance = dict(zip(features, model.feature_importances_))\nfig_imp = plot_feature_importance(importance)\nplt.show()\nTemperature is the dominant explanatory variable, followed by humidity and wind speed."
+  },
+  {
+    "objectID": "index.html#operational-implications-1",
+    "href": "index.html#operational-implications-1",
+    "title": "```markdown",
+    "section": "10.2 Operational Implications",
+    "text": "10.2 Operational Implications\nBased on model outputs:\n\nTemperature Sensitivity: Irrigation demand increases exponentially beyond 30°C.\nGrowth Stages: Fruiting-stage trees require ~30–50% more water than vegetative stage trees.\nSoil Factors: Sandy soils amplify irrigation sensitivity and require more frequent, smaller water applications.\nWind Effect: Wind speeds &gt;15 km/h significantly increase evapotranspiration effects."
+  },
+  {
+    "objectID": "index.html#limitations-1",
+    "href": "index.html#limitations-1",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "9.3 4.3 Limitations",
+    "text": "9.3 4.3 Limitations\n\nSynthetic dataset (not field sensor data)\nNo seasonal time-series modeling\nNo soil moisture sensor integration"
+  },
+  {
+    "objectID": "index.html#future-work-1",
+    "href": "index.html#future-work-1",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "9.4 4.4 Future Work",
+    "text": "9.4 4.4 Future Work\n\nIncorporate real ET₀ meteorological data\nAdd time-series forecasting\nDeploy real-time dashboard (Marimo or Streamlit)\nIntegrate IoT soil moisture measurements"
+  },
+  {
+    "objectID": "index.html#target-variable-formulation",
+    "href": "index.html#target-variable-formulation",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "3.1 Target Variable Formulation",
+    "text": "3.1 Target Variable Formulation\nTo ensure agronomic validity, the target variable (\\(y = \\text{Water Need}\\)) was synthesized based on the FAO-56 Penman-Monteith framework, the global standard for irrigation scheduling [1].\nDue to the practical constraints of sensor availability (specifically solar radiation), Reference Evapotranspiration (\\(ET_0\\)) was estimated using the Hargreaves-Samani equation, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:\n\\[\nET_0 = 0.0023 \\cdot (T_{mean} + 17.8) \\cdot \\sqrt{T_{max} - T_{min}} \\cdot R_a\n\\]\nThe final Crop Evapotranspiration (\\(ET_c\\)) was derived as:\n\\[\nET_c = ET_0 \\times K_c \\times K_s - P_{eff}\n\\]\nWhere:\n\n\\(K_c\\) (Crop Coefficient): Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).\n\\(K_s\\) (Soil Stress Coefficient): Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).\n\\(P_{eff}\\) (Effective Rainfall): Accounted for as 80% of daily precipitation.\n\n\n\n\n\n\n\nMethodological Note\n\n\n\nWhile the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates (\\(r &gt; 0.95\\)) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable."
+  },
+  {
+    "objectID": "index.html#target-variable-formulation-1",
+    "href": "index.html#target-variable-formulation-1",
+    "title": "```markdown",
+    "section": "9.1 Target Variable Formulation",
+    "text": "9.1 Target Variable Formulation\nTo ensure agronomic validity, the target variable (\\(y = \\text{Water Need}\\)) was synthesized based on the FAO-56 Penman-Monteith framework, the global standard for irrigation scheduling [1].\nDue to the practical constraints of sensor availability (specifically solar radiation), Reference Evapotranspiration (\\(ET_0\\)) was estimated using the Hargreaves-Samani equation, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:\n\\[\nET_0 = 0.0023 \\cdot (T_{mean} + 17.8) \\cdot \\sqrt{T_{max} - T_{min}} \\cdot R_a\n\\]\nThe final Crop Evapotranspiration (\\(ET_c\\)) was derived as:\n\\[\nET_c = ET_0 \\times K_c \\times K_s - P_{eff}\n\\]\nWhere:\n\n\\(K_c\\) (Crop Coefficient): Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).\n\\(K_s\\) (Soil Stress Coefficient): Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).\n\\(P_{eff}\\) (Effective Rainfall): Accounted for as 80% of daily precipitation.\n\n\n\n\n\n\n\nMethodological Note\n\n\n\nWhile the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates (\\(r &gt; 0.95\\)) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable."
+  },
+  {
+    "objectID": "index.html#limitations-future-work",
+    "href": "index.html#limitations-future-work",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "4.3 Limitations & Future Work",
+    "text": "4.3 Limitations & Future Work\nLimitations: - Dataset is synthetic based on FAO-56 logic, not raw field sensor data. - Absence of seasonal time-series components in the regression model.\nFuture Directions: - Incorporate real ET₀ meteorological data from station APIs. - Deploy real-time dashboard using Marimo or Streamlit. - Integrate IoT soil moisture measurements for closed-loop feedback."
+  },
+  {
+    "objectID": "index.html#limitations-future-work-1",
+    "href": "index.html#limitations-future-work-1",
+    "title": "```markdown",
+    "section": "10.3 Limitations & Future Work",
+    "text": "10.3 Limitations & Future Work\nLimitations: - Dataset is synthetic based on FAO-56 logic, not raw field sensor data. - Absence of seasonal time-series components in the regression model.\nFuture Directions: - Incorporate real ET₀ meteorological data from station APIs. - Deploy real-time dashboard using Marimo or Streamlit. - Integrate IoT soil moisture measurements for closed-loop feedback."
+  }
+]

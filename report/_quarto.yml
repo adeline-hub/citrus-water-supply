@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: ../docs
+
+website:
+  title: "🍊 Citrus Water Supply Report"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Report
+    right:
+      - icon: github
+        href: https://github.com/<USERNAME>/citrus-water-supply
+  page-footer:
+    center: "© danki studio 2025 · Built with Quarto + Marimo"
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: assets/custom.scss
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    fig-align: center
+    fig-responsive: true
+    embed-resources: false
+    smooth-scroll: true
+    link-external-newwindow: true
+
+  pdf:
+    documentclass: article
+    geometry:
+      - margin=2.5cm
+    fontsize: 11pt
+    colorlinks: true
+    toc: false
+    number-sections: true
+    fig-pos: "H"
+
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+
+bibliography: references.bib
+csl: https://www.zotero.org/styles/apa

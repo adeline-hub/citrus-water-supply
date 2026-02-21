@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Data (keep processed for reproducibility)
+data/raw/*.csv
+data/raw/*.xlsx
+
+# Quarto build artifacts
+report/_site/
+report/.quarto/
+report/*_files/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
