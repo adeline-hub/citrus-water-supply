@@ -4,13 +4,13 @@ project:
   resources:
     - assets/
 website:
-  title: "Citrus Water Supply Report"
+  title: "Citrus Water Supply"
   navbar:
     left:
       - href: index.qmd
         text: Report
       - href: app.html
-        text: "Calculator"
+        text: "🍋 Calculator"
     right:
       - icon: github
         href: https://github.com/<USERNAME>/citrus-water-supply
@@ -19,6 +19,7 @@ website:
 
 format:
   html:
+    favicon: assets/favicon.ico
     theme:
       light: flatly
       dark: darkly
@@ -33,7 +34,7 @@ format:
     embed-resources: false
     smooth-scroll: true
     link-external-newwindow: true
-
+  
   pdf:
     documentclass: article
     geometry:

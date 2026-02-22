@@ -43,7 +43,7 @@ The model integrates the following variables:
 
 | Deliverable | Technology | Location |
 |-------------|------------|----------|
-| Exploratory Data Analysis | Marimo | `notebooks/eda_marimo.py` |
+| Exploratory Data Analysis | Marimo + Python | `notebooks/eda_marimo.py` |
 | Technical Whitepaper (HTML/PDF) | Quarto | `report/index.qmd` |
 | **Irrigation Calculator App** | **Quarto + JS** | `report/app.qmd` |
 | Live Whitepaper | GitHub Pages | [View Report](https://adeline-hub.github.io/citrus-water-supply/) |
