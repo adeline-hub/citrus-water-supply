@@ -1,24 +1,32 @@
 ---
 title: "Modeling Citrus Irrigation Requirements Using Environmental Drivers"
-author: "Nambona Adeline YANGUERE"
+author: "Nambona Adeline Yanguere"
 date: last-modified
 format:
   html:
     toc: true
     number-sections: true
     code-fold: true
-    code-summary: "Show code"
     theme: cosmo
-    smooth-scroll: true
   pdf:
     documentclass: article
     number-sections: true
+    toc: true
+    colorlinks: true
+    pdf-engine: xelatex       # Better for fonts/layout
+    fig-format: png           # Critical: Fixes plot crashes in PDF
+    fig-dpi: 300              # High resolution for printing
+    geometry:
+      - margin=1in
+execute:
+  echo: false
+  warning: false
+  message: false
 jupyter: python3
 ---
 
 ```{python}
 #| label: setup
-#| include: false
 
 import pandas as pd
 import numpy as np
@@ -72,6 +80,264 @@ This study aims to:
 - Build a predictive regression model.
 - Provide operational irrigation guidance.
 
+Executive Synthesis
+
+By transforming environmental data into predictive irrigation recommendations, this project moves citrus water management from static scheduling to adaptive optimization. The approach supports measurable reductions in water usage, operating costs, and climate-related production risk, providing a scalable pathway toward precision agriculture at commercial scale.
+
+## Why Use Machine Learning for Irrigation Optimization?
+
+### Limitations of Classical Irrigation Scheduling
+
+The FAO-56 Penman-Monteith framework provides a physically grounded method for estimating reference evapotranspiration. However, operational irrigation management in commercial orchards often relies on:
+
+- Static crop coefficients
+- Manual rule adjustments
+- Simplified stress assumptions
+- Calendar-based irrigation cycles
+
+These methods assume that environmental variables affect water demand in relatively linear and separable ways.
+
+In practice, this assumption is rarely true.
+
+Water demand depends on complex, nonlinear interactions between:
+
+- Temperature thresholds
+- Humidity gradients
+- Wind intensity
+- Soil retention characteristics
+- Growth stage sensitivity
+
+Traditional models require explicit parameter tuning to capture these effects. They do not automatically learn interactions from historical variability.
+
+### Limitations of Classical Irrigation Scheduling
+
+Machine learning does not replace agronomic theory — it extends it.
+
+Instead of manually specifying every interaction term, supervised learning:
+
+1. Learns nonlinear relationships directly from observed data
+2. Captures interaction effects automatically
+3.Quantifies predictive uncertainty
+4. Adapts when retrained on new climate patterns
+
+For example:
+
+- High temperature combined with low humidity does not increase evapotranspiration linearly.
+- Wind impact differs significantly between sandy and clay soils.
+- Fruiting-stage trees respond differently to identical environmental conditions compared to vegetative-stage trees.
+Tree-based ensemble models (e.g., XGBoost) are particularly effective at modeling such conditional relationships without requiring explicit physical equations for each scenario.
+
+### Why Not Use Only FAO-56?
+
+FAO-56 remains the physical reference standard.
+
+However:
+
+- It assumes idealized conditions.
+- It requires multiple meteorological inputs (including radiation).
+- It does not optimize irrigation decisions at the operational level.
+
+Machine learning enables:
+
+- Integration of heterogeneous data sources
+- Calibration to specific orchard conditions
+- Adaptation to microclimates
+- Data-driven adjustment of coefficients
+
+In other words, FAO-56 estimates evapotranspiration.
+Machine learning optimizes irrigation decisions under real-world variability.
+
+### Strategic Rationale for the Citrus Industry
+
+From an operational perspective, ML-driven irrigation scheduling:
+
+- Reduces systematic over-irrigation
+- Improves allocation across orchard blocks
+- Supports climate adaptation
+- Provides measurable performance metrics (R², MAE, validation error)
+
+It transforms irrigation from a rule-based system into a continuously learnable system.
+
+### FAO-56 vs Machine Learning: A Comparative Overview
+
+| Criterion | FAO-56 (Physics-Based) | Machine Learning (Data-Driven) |
+|---|---|---|
+| **Foundation** | Physical equations (Penman-Monteith) | Learned from observed data |
+| **Nonlinear interactions** | Requires manual parameterization | Captured automatically |
+| **Adaptation to local conditions** | Generic coefficients | Calibrated to specific orchards |
+| **Data requirements** | Radiation, wind, humidity, temperature | Any available environmental variables |
+| **Missing data tolerance** | Degrades significantly | Handles partial inputs |
+| **Retraining** | Not applicable | Continuous improvement with new data |
+| **Interpretability** | High (physical meaning) | Moderate (feature importance, SHAP) |
+| **Operational optimization** | Estimates ET₀ only | Optimizes irrigation decisions |
+| **Climate adaptation** | Static coefficients | Adapts to distributional shifts |
+| **Scalability** | Manual per-zone tuning | Automated across orchard blocks |
+| **Accuracy measurement** | Theoretical validation | Quantifiable (R², MAE, RMSE, CV) |
+
+```{python}
+#| label: fig-approach-comparison
+#| fig-cap: "Comparison of physics-based (FAO-56) and data-driven (ML) irrigation modeling approaches."
+
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# ── Left: FAO-56 Physics-Based ──────────────────────────
+ax = axes[0]
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 10)
+ax.set_title("Physics-Based (FAO-56)", fontsize=13, fontweight="bold", color="#2E86AB")
+ax.axis("off")
+
+# Inputs
+inputs_fao = ["Temperature", "Humidity", "Wind Speed", "Solar Radiation"]
+for i, label in enumerate(inputs_fao):
+    y = 8.5 - i * 1.4
+    ax.add_patch(mpatches.FancyBboxPatch((0.3, y - 0.35), 3.2, 0.7,
+                 boxstyle="round,pad=0.15", facecolor="#E8F4FD", edgecolor="#2E86AB", linewidth=1.2))
+    ax.text(1.9, y, label, ha="center", va="center", fontsize=9)
+    ax.annotate("", xy=(4.2, y), xytext=(3.6, y),
+                arrowprops=dict(arrowstyle="->", color="#2E86AB", lw=1.5))
+
+# Process
+ax.add_patch(mpatches.FancyBboxPatch((4.3, 4.15), 2.8, 1.5,
+             boxstyle="round,pad=0.2", facecolor="#2E86AB", edgecolor="#1a5f7a", linewidth=1.5))
+ax.text(5.7, 5.2, "Penman-Monteith", ha="center", va="center", fontsize=9, color="white", fontweight="bold")
+ax.text(5.7, 4.6, "Equation", ha="center", va="center", fontsize=9, color="white")
+
+# Output
+ax.annotate("", xy=(8.2, 4.9), xytext=(7.2, 4.9),
+            arrowprops=dict(arrowstyle="->", color="#2E86AB", lw=1.5))
+ax.add_patch(mpatches.FancyBboxPatch((8.0, 4.15), 1.8, 1.5,
+             boxstyle="round,pad=0.2", facecolor="#FFE0B2", edgecolor="#F18F01", linewidth=1.5))
+ax.text(8.9, 4.9, "ET₀\n(Reference)", ha="center", va="center", fontsize=9, fontweight="bold")
+
+# Limitation note
+ax.text(5.0, 1.5, "Static coefficients\nNo learning capability\nRequires radiation data",
+        ha="center", va="center", fontsize=8, color="#666", style="italic",
+        bbox=dict(boxstyle="round,pad=0.4", facecolor="#f5f5f5", edgecolor="#ccc"))
+
+
+# ── Right: ML Data-Driven ────────────────────────────────
+ax = axes[1]
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 10)
+ax.set_title("Data-Driven (Machine Learning)", fontsize=13, fontweight="bold", color="#A23B72")
+ax.axis("off")
+
+# Inputs
+inputs_ml = ["Temperature", "Humidity", "Wind Speed", "Rainfall", "Soil Type", "Growth Stage", "Tree Age"]
+for i, label in enumerate(inputs_ml):
+    y = 9.2 - i * 1.1
+    ax.add_patch(mpatches.FancyBboxPatch((0.3, y - 0.3), 3.2, 0.6,
+                 boxstyle="round,pad=0.12", facecolor="#F3E5F5", edgecolor="#A23B72", linewidth=1.2))
+    ax.text(1.9, y, label, ha="center", va="center", fontsize=8.5)
+    ax.annotate("", xy=(4.2, y), xytext=(3.6, y),
+                arrowprops=dict(arrowstyle="->", color="#A23B72", lw=1.2))
+
+# Process
+ax.add_patch(mpatches.FancyBboxPatch((4.3, 3.8), 2.8, 2.0,
+             boxstyle="round,pad=0.2", facecolor="#A23B72", edgecolor="#7a1a54", linewidth=1.5))
+ax.text(5.7, 5.1, "XGBoost", ha="center", va="center", fontsize=10, color="white", fontweight="bold")
+ax.text(5.7, 4.5, "Learns nonlinear", ha="center", va="center", fontsize=8, color="white")
+ax.text(5.7, 4.1, "interactions", ha="center", va="center", fontsize=8, color="white")
+
+# Output
+ax.annotate("", xy=(8.2, 4.8), xytext=(7.2, 4.8),
+            arrowprops=dict(arrowstyle="->", color="#A23B72", lw=1.5))
+ax.add_patch(mpatches.FancyBboxPatch((8.0, 3.8), 1.8, 2.0,
+             boxstyle="round,pad=0.2", facecolor="#C8E6C9", edgecolor="#2CA58D", linewidth=1.5))
+ax.text(8.9, 5.1, "Irrigation", ha="center", va="center", fontsize=9, fontweight="bold", color="#1a6b5a")
+ax.text(8.9, 4.5, "Forecast", ha="center", va="center", fontsize=9, fontweight="bold", color="#1a6b5a")
+ax.text(8.9, 4.0, "(L/tree/day)", ha="center", va="center", fontsize=8, color="#1a6b5a")
+
+# Advantage note
+ax.text(5.0, 1.2, "Adaptive to conditions\nContinuous retraining\nQuantifiable accuracy (R², MAE)",
+        ha="center", va="center", fontsize=8, color="#333", style="italic",
+        bbox=dict(boxstyle="round,pad=0.4", facecolor="#f0fff0", edgecolor="#2CA58D"))
+
+plt.tight_layout(w_pad=3)
+plt.show()
+```
+
+## Strategic Impact Assessment
+
+### Operational Context
+
+Irrigation represents one of the largest variable costs in citrus production, particularly in regions exposed to:
+
+- Water scarcity
+- Rising energy costs
+- Increasing climate variability
+- Regulatory constraints on groundwater extraction
+
+Traditional irrigation scheduling methods rely on static coefficients and manual adjustments. While agronomically sound, they do not dynamically adapt to daily environmental fluctuations or nonlinear stress interactions.
+
+This project introduces a predictive modeling framework designed to improve irrigation precision and operational efficiency.
+
+### Quantitative Impact Example (Per Hectare)
+
+Assume a commercial citrus orchard with:
+
+- 400 trees per hectare
+- Average annual irrigation requirement: ~5,000–8,000 m³ per hectare
+- Pumping cost: €0.10–€0.25 per m³ (water + energy)
+
+If machine learning–based optimization reduces excess irrigation by 10%, the impact per hectare becomes:
+
+- Water savings: 500–800 m³ per year
+- Direct cost savings: €50–€200 per hectare annually
+- Reduced nutrient leaching and runoff
+- Lower energy consumption for pumping
+
+At scale:
+
+For a 100-hectare orchard:
+
+- 50,000–80,000 m³ water saved annually
+- €5,000–€20,000 in operational cost reduction
+
+This does not account for indirect gains such as:
+
+- Improved fruit quality under optimized water stress
+- Reduced disease pressure from over-irrigation
+- Enhanced resilience during heat waves
+
+### Efficiency Gains Enabled by Machine Learning
+
+The model contributes to citrus industry efficiency in four measurable ways:
+
+1. Resource Optimization
+By dynamically estimating daily water demand, the system:
+
+- Minimizes over-application
+- Aligns irrigation with actual evapotranspiration drivers
+- Reduces variability across orchard zones
+
+2. Cost Control
+Precise water allocation reduces:
+
+- Pumping energy costs
+- Maintenance strain on irrigation infrastructure
+- Risk of regulatory penalties in water-restricted regions
+
+3. Risk Mitigation
+Under climate volatility, predictive irrigation scheduling:
+
+- Reduces exposure to heat stress
+- Improves yield stability
+- Enables proactive rather than reactive management
+
+4. Scalable Digital Infrastructure
+This framework can evolve into:
+
+- Sensor-integrated irrigation control
+- Zone-level optimization models
+- API-based decision support systems
+- Real-time dashboards for agronomic teams
+
 ## Dataset Description
 
 The dataset contains 2,000 daily observations including:
@@ -88,7 +354,6 @@ The dataset contains 2,000 daily observations including:
 ```{python}
 #| label: tbl-describe
 #| tbl-cap: "Descriptive statistics of numeric variables."
-#| echo: false
 
 Markdown(df.describe().round(2).to_markdown())
 ```
@@ -100,6 +365,7 @@ Markdown(df.describe().round(2).to_markdown())
 ```{python}
 #| label: fig-corr
 #| fig-cap: "Pearson correlation matrix."
+
 
 fig_corr = plot_correlation_heatmap(df)
 plt.show()
@@ -118,6 +384,7 @@ with water demand, followed by wind speed and humidity.
 #| label: fig-temp
 #| fig-cap: "Non-linear relationship between temperature and irrigation demand."
 
+
 fig_temp = plot_temp_vs_water(df)
 plt.show()
 ```
@@ -131,6 +398,7 @@ conditions.
 #| label: fig-growth
 #| fig-cap: "Distribution of water demand across growth stages and soil types."
 
+
 fig_growth = plot_growth_stage_box(df)
 plt.show()
 ```
@@ -143,7 +411,6 @@ highest median demand.
 ```{python}
 #| label: tbl-lookup
 #| tbl-cap: "Median water demand by temperature band and growth stage."
-#| echo: false
 
 bins = pd.cut(df["temperature_c"], bins=[0, 20, 30, 40, 50],
               labels=["<20°C", "20-30°C", "30-40°C", ">40°C"])
@@ -233,7 +500,6 @@ print(f"Testing samples: {len(X_test)}")
 ```{python}
 #| label: tbl-features
 #| tbl-cap: "Model Input Features"
-#| echo: false
 
 feature_metadata = pd.DataFrame({
     "Feature Name": [
@@ -276,6 +542,7 @@ mae = mean_absolute_error(y_test, y_pred)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 
 cv_scores = cross_val_score(model, X, y, cv=5, scoring="r2")
+model.save_model("citrus_model.json")
 
 print(f"Test R²: {r2:.3f}")
 print(f"MAE (L): {mae:.2f}")
@@ -292,6 +559,7 @@ print(f"Cross-validated R²: {cv_scores.mean():.3f}")
 ```{python}
 #| label: fig-importance
 #| fig-cap: "Normalized feature importance from XGBoost."
+
 
 importance = dict(zip(features, model.feature_importances_))
 fig_imp = plot_feature_importance(importance)
@@ -312,32 +580,67 @@ Based on model outputs:
 ## Limitations & Future Work
 
 **Limitations:**
+
 - Dataset is synthetic based on FAO-56 logic, not raw field sensor data.
 - Absence of seasonal time-series components in the regression model.
 
 **Future Directions:**
+
 - Incorporate real ET₀ meteorological data from station APIs.
 - Deploy real-time dashboard using Marimo or Streamlit.
 - Integrate IoT soil moisture measurements for closed-loop feedback.
+
+{{< pagebreak >}}
+
+# Industrial Application: Irrigation Decision Support Tool
+
+The value of predictive modeling in agriculture is realized only when complex data is translated into actionable field operations. This project bridges that gap by transforming the XGBoost regressor into a **Decision Support System (DSS)**.
+
+By integrating real-time weather forecasts with site-specific metadata (tree age, soil type), the tool provides irrigation managers with precise volumetric requirements, moving beyond the "one-size-fits-all" approach of static FAO tables.
+
+### The Decision Logic Flow
+
+
+**User Interface & Inputs**
+
+The DSS interface is designed for low-friction data entry:
+
+- **Orchard Metadata:** Tree count, age, and soil hydraulic properties.
+- **Environmental Inputs:** Temperature, humidity, wind speed, and forecasted rainfall.
+- **Operational Constraints:** Choice of daily, weekly, or monthly planning cycles.
+
+**Actionable Outputs**
+
+The system delivers a "Dual-Track" validation:
+
+1.  **ML Prediction:** Optimized volume based on historical sensor patterns.
+2.  **FAO-56 Baseline:** The theoretical standard for safety comparison.
+3.  **Efficiency Metric:** Variance analysis (potential water/energy savings).
+
+### Deployment & Scalability
+This tool is deployed as a WebAssembly (WASM) application, allowing for offline-capable, high-performance inference directly on a mobile device or desktop without requiring a centralized database.
+
+**Try the Live Tool:** An interactive version of this model is available at [adeline-hub.github.io/citrus-water-supply/app.html](./app.html).
+
+{{< pagebreak >}}
 
 # Conclusion
 
 This whitepaper demonstrates that environmental and agronomic variables can predict citrus irrigation requirements with high accuracy ($R^2 > 0.9$). The framework enables scalable, data-driven irrigation scheduling and can be extended to additional crops and climatic regions.
 
+{{< pagebreak >}}
+
 # References
 
-::: {#refs}
-:::
+1. Allen, R.G. et al. (1998). *Crop Evapotranspiration — FAO Irrigation and Drainage Paper 56*.
+2. Chen, T. & Guestrin, C. (2016). *XGBoost: A Scalable Tree Boosting System*.
 
-# Contact & Partners {.unnumbered}
+## Contact & Partners {.unnumbered}
 
-::: {layout-ncol=2 layout-valign="center"}
-
-[![**Danki Studio**<br>Data Science & Architecture](assets/logo.png){width=200px}](https://dankistudio.com)
-
-[![**Partner Organization**<br>Strategic Collaboration](assets/partner_logo.png){width=200px}](#)
-
-:::
+| | |
+| :---: | :---: |
+| ![](assets/logo.png){width=2in} | ![](assets/partner_logo.png){width=2in} |
+| [**Danki Studio**](https://dankistudio.com) | [**Partner Org**](#) |
 
 ::: {.callout-note appearance="minimal" icon=false}
 **About Danki Studio:** We specialize in building scalable data architectures and actionable machine learning systems for agriculture and industry. [Visit our website](https://dankistudio.com).

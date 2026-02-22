@@ -1,0 +1,608 @@
+---
+title: "Citrus Irrigation Calculator"
+format:
+  html:
+    page-layout: full
+    toc: false
+    echo: false
+execute:
+  echo: false
+---
+
+```{=html}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --soil:#1a1a2e;--canopy:#0d3b2b;--citrus:#f5a623;--lime:#7ec850;
+  --water:#3ab4f2;--sand:#f2e8d5;--text:#f0ede6;--muted:#8c9490;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);
+  --radius:14px;
+}
+body{background:var(--soil);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(13,59,43,.6) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 40% at 80% 80%,rgba(245,166,35,.08) 0%,transparent 60%);
+  pointer-events:none}
+.app-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+.app-header{text-align:center;margin-bottom:3rem;animation:fadeDown .7s ease both}
+.app-header .tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);border:1px solid var(--lime);border-radius:100px;padding:.3rem 1rem;margin-bottom:1.2rem}
+.app-header h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;color:var(--sand);margin-bottom:.8rem}
+.app-header h1 em{font-style:italic;color:var(--citrus)}
+.app-header p{color:var(--muted);font-size:.95rem;max-width:520px;margin:0 auto;line-height:1.7}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+@media(max-width:720px){.main-grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;backdrop-filter:blur(12px);animation:fadeUp .6s ease both}
+.card-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--citrus);margin-bottom:1.4rem;display:flex;align-items:center;gap:.5rem}
+.card-title::before{content:'';display:inline-block;width:18px;height:2px;background:var(--citrus)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-row.full{grid-template-columns:1fr}
+.field label{display:block;font-size:.72rem;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem}
+.field input,.field select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Mono',monospace;font-size:.9rem;padding:.6rem .85rem;transition:border-color .2s,background .2s;appearance:none}
+.field input:focus,.field select:focus{outline:none;border-color:var(--citrus);background:rgba(245,166,35,.06)}
+.field select option{background:#1a1a2e}
+.field input[type="range"]{padding:0;height:4px;background:rgba(255,255,255,.1);border:none;cursor:pointer;accent-color:var(--citrus)}
+.range-row{display:flex;align-items:center;gap:.7rem}
+.range-val{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--citrus);min-width:2.8rem;text-align:right}
+.period-tabs{display:flex;gap:.5rem;margin-bottom:1.4rem}
+.tab-btn{flex:1;padding:.55rem .5rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Syne',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.tab-btn.active{background:var(--citrus);border-color:var(--citrus);color:var(--soil)}
+.tab-btn:hover:not(.active){border-color:var(--citrus);color:var(--citrus)}
+.calc-btn{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--canopy),#0a4a33);border:1px solid var(--lime);border-radius:10px;color:var(--lime);font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;margin-top:1.2rem}
+.calc-btn:hover{background:var(--lime);color:var(--soil);box-shadow:0 0 24px rgba(126,200,80,.35);transform:translateY(-1px)}
+.results-card{grid-column:1/-1;animation:fadeUp .6s ease .2s both}
+.results-hidden{display:none}
+.dual-track{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem}
+@media(max-width:600px){.dual-track{grid-template-columns:1fr}}
+.track{border-radius:12px;padding:1.4rem;position:relative;overflow:hidden}
+.track-ml{background:linear-gradient(135deg,rgba(13,59,43,.8),rgba(13,59,43,.4));border:1px solid rgba(126,200,80,.3)}
+.track-fao{background:linear-gradient(135deg,rgba(58,180,242,.12),rgba(58,180,242,.04));border:1px solid rgba(58,180,242,.25)}
+.track-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem}
+.track-ml .track-label{color:var(--lime)}
+.track-fao .track-label{color:var(--water)}
+.track-main{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1;margin-bottom:.2rem}
+.track-ml .track-main{color:var(--lime)}
+.track-fao .track-main{color:var(--water)}
+.track-sub{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.track-detail{margin-top:.8rem;font-size:.78rem;color:var(--muted);line-height:1.6}
+.track-detail strong{color:var(--text)}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:700px){.metrics-row{grid-template-columns:repeat(2,1fr)}}
+.metric{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.metric-value{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--citrus);display:block;line-height:1;margin-bottom:.3rem}
+.metric-label{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.savings-block{background:rgba(126,200,80,.06);border:1px solid rgba(126,200,80,.2);border-radius:10px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.savings-pct{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--lime);white-space:nowrap}
+.savings-bar-wrap{flex:1;min-width:160px}
+.savings-bar-label{font-size:.75rem;color:var(--muted);margin-bottom:.4rem}
+.savings-bar-track{height:6px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden}
+.savings-bar-fill{height:100%;background:linear-gradient(90deg,var(--lime),var(--citrus));border-radius:100px;transition:width .8s cubic-bezier(.16,1,.3,1)}
+.savings-text{font-size:.82rem;color:var(--text);line-height:1.5;min-width:180px}
+.extra-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+@media(max-width:600px){.extra-row{grid-template-columns:1fr}}
+.extra-pill{border-radius:10px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem}
+.pill-cost{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2)}
+.pill-co2{background:rgba(58,180,242,.07);border:1px solid rgba(58,180,242,.18)}
+.pill-icon{font-size:1.6rem}
+.pill-value{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--citrus);display:block;line-height:1}
+.pill-co2 .pill-value{color:var(--water)}
+.pill-desc{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.presets-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.preset-btn{padding:.35rem .85rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:100px;color:var(--muted);font-family:'Syne',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .18s}
+.preset-btn:hover{background:rgba(245,166,35,.1);border-color:var(--citrus);color:var(--citrus)}
+.sep{height:1px;background:var(--border);margin:1.2rem 0}
+/* validation */
+.validation{border-radius:10px;padding:.9rem 1.1rem;font-size:.8rem;line-height:1.6;margin-bottom:1.2rem}
+.validation.ok{background:rgba(126,200,80,.08);border:1px solid rgba(126,200,80,.35);color:#a8d878}
+.validation.ok strong{color:var(--lime)}
+.validation.low,.validation.high{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);color:#d4b07a}
+.validation.low strong,.validation.high strong{color:var(--citrus)}
+/* pdf button */
+.pdf-btn{width:100%;padding:.8rem;margin-top:1.2rem;background:transparent;border:1px dashed rgba(245,166,35,.4);border-radius:10px;color:var(--citrus);font-family:'Syne',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.pdf-btn:hover{background:rgba(245,166,35,.08);border-color:var(--citrus);box-shadow:0 0 18px rgba(245,166,35,.15)}
+.pdf-btn:disabled{opacity:.5;cursor:wait}
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+.disclaimer{text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:2.5rem;letter-spacing:.06em;opacity:.6}
+</style>
+</head>
+<body>
+<div class="app-wrap">
+  <header class="app-header">
+    <div class="tag">Citrus Decision Support Tool v1.0</div>
+    <h1>Citrus Irrigation<br/><em>Calculator</em></h1>
+    <p>Enter your orchard parameters to receive ML-optimised irrigation volumes alongside the FAO-56 baseline &mdash; in litres, cubic metres, cost and CO&sup2;.</p>
+  </header>
+
+  <div class="main-grid">
+    <!-- INPUT PANEL -->
+    <div class="card">
+      <div class="card-title">Orchard Parameters</div>
+      <div class="presets-row">
+        <span style="font-size:.68rem;color:var(--muted);align-self:center;margin-right:.2rem">Quick fill:</span>
+        <button class="preset-btn" onclick="loadPreset('hot')">Heat Wave</button>
+        <button class="preset-btn" onclick="loadPreset('mild')">Mild Season</button>
+        <button class="preset-btn" onclick="loadPreset('fruit')">Peak Fruiting</button>
+        <button class="preset-btn" onclick="loadPreset('rain')">After Rain</button>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Trees / hectare</label><input type="number" id="trees" value="400" min="1" max="2000" step="10"/></div>
+        <div class="field"><label>Tree age (years)</label><input type="number" id="age" value="8" min="1" max="40"/></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Growth stage</label>
+          <select id="stage"><option value="vegetative">Vegetative</option><option value="flowering">Flowering</option><option value="fruiting" selected>Fruiting</option></select>
+        </div>
+        <div class="field"><label>Soil type</label>
+          <select id="soil"><option value="sandy" selected>Sandy</option><option value="loam">Loam</option><option value="clay">Clay</option></select>
+        </div>
+      </div>
+      <div class="sep"></div>
+      <div class="form-row full"><div class="field"><label>Temperature (&deg;C)</label>
+        <div class="range-row"><input type="range" id="temp" min="10" max="48" value="32" oninput="document.getElementById('tempVal').textContent=this.value+'°C'"/><span class="range-val" id="tempVal">32°C</span></div>
+      </div></div>
+      <div class="form-row full"><div class="field"><label>Humidity (%)</label>
+        <div class="range-row"><input type="range" id="hum" min="10" max="95" value="45" oninput="document.getElementById('humVal').textContent=this.value+'%'"/><span class="range-val" id="humVal">45%</span></div>
+      </div></div>
+      <div class="form-row full"><div class="field"><label>Wind speed (km/h)</label>
+        <div class="range-row"><input type="range" id="wind" min="0" max="60" value="12" oninput="document.getElementById('windVal').textContent=this.value+' km/h'"/><span class="range-val" id="windVal">12 km/h</span></div>
+      </div></div>
+      <div class="form-row full"><div class="field"><label>Rainfall (mm/day)</label>
+        <div class="range-row"><input type="range" id="rain" min="0" max="50" value="0" oninput="document.getElementById('rainVal').textContent=this.value+' mm'"/><span class="range-val" id="rainVal">0 mm</span></div>
+      </div></div>
+    </div>
+
+    <!-- OPTIONS PANEL -->
+    <div class="card" style="animation-delay:.1s">
+      <div class="card-title">Output Configuration</div>
+      <div class="form-row full"><div class="field"><label>Planning period</label>
+        <div class="period-tabs" id="periodTabs">
+          <button class="tab-btn" data-p="1" onclick="setPeriod(this)">Daily</button>
+          <button class="tab-btn active" data-p="7" onclick="setPeriod(this)">Weekly</button>
+          <button class="tab-btn" data-p="30" onclick="setPeriod(this)">Monthly</button>
+        </div>
+      </div></div>
+      <div class="form-row">
+        <div class="field"><label>Water cost (&euro;/m&sup3;)</label><input type="number" id="waterCost" value="0.15" min="0.01" max="5" step="0.01"/></div>
+        <div class="field"><label>Energy (kWh/m&sup3;)</label><input type="number" id="energyKwh" value="0.40" min="0.05" max="3" step="0.05"/></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>CO&sup2; factor (kg/kWh)</label><input type="number" id="co2factor" value="0.233" min="0.05" max="1" step="0.01"/></div>
+        <div class="field"><label>Hectares</label><input type="number" id="hectares" value="1" min="0.1" max="1000" step="0.1"/></div>
+      </div>
+      <div class="sep"></div>
+      <div style="font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">
+        <strong style="color:var(--text);font-size:.8rem">Model logic</strong><br/>
+        The <span style="color:var(--lime)">ML estimate</span> uses the XGBoost regression coefficients trained on 2,000 citrus observations, with age-scaled canopy area.<br/><br/>
+        The <span style="color:var(--water)">FAO-56 baseline</span> uses Classical Penman-Monteith ET&sub0; &times; Kc &times; Ks &mdash; the international irrigation standard.
+      </div>
+      <button class="calc-btn" onclick="calculate()">Calculate Irrigation</button>
+    </div>
+
+    <!-- RESULTS PANEL -->
+    <div class="card results-card results-hidden" id="resultsCard">
+      <div class="card-title">Results &mdash; <span id="periodLabel">Weekly</span> Estimate</div>
+      <div id="validationMsg" class="validation ok" style="display:none"></div>
+      <div class="dual-track">
+        <div class="track track-ml">
+          <div class="track-label">ML Model Prediction</div>
+          <div class="track-main" id="mlMain">&mdash;</div>
+          <div class="track-sub">L / tree / day</div>
+          <div class="track-detail" id="mlDetail"></div>
+        </div>
+        <div class="track track-fao">
+          <div class="track-label">FAO-56 Classical Baseline</div>
+          <div class="track-main" id="faoMain">&mdash;</div>
+          <div class="track-sub">L / tree / day</div>
+          <div class="track-detail" id="faoDetail"></div>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-value" id="mTotalL">&mdash;</span><span class="metric-label">ML L/<span id="mLabelL">week</span></span></div>
+        <div class="metric"><span class="metric-value" id="mTotalM3">&mdash;</span><span class="metric-label">ML m&sup3;/<span id="mLabelM">week</span></span></div>
+        <div class="metric"><span class="metric-value" id="mFaoM3">&mdash;</span><span class="metric-label">FAO m&sup3;/<span id="mLabelF">week</span></span></div>
+        <div class="metric"><span class="metric-value" id="mSavedM3">&mdash;</span><span class="metric-label">Saved m&sup3;/<span id="mLabelS">week</span></span></div>
+      </div>
+      <div class="savings-block">
+        <div class="savings-pct" id="savingsPct">&mdash;%</div>
+        <div class="savings-bar-wrap">
+          <div class="savings-bar-label">Efficiency vs FAO baseline</div>
+          <div class="savings-bar-track"><div class="savings-bar-fill" id="savingsBar" style="width:0%"></div></div>
+        </div>
+        <div class="savings-text" id="savingsText"></div>
+      </div>
+      <div class="extra-row">
+        <div class="extra-pill pill-cost">
+          <div class="pill-icon">&#128182;</div>
+          <div class="pill-data"><span class="pill-value" id="costVal">&mdash;</span><span class="pill-desc">Cost saved (&euro;/<span id="costLabel">week</span>/ha)</span></div>
+        </div>
+        <div class="extra-pill pill-co2">
+          <div class="pill-icon">&#127807;</div>
+          <div class="pill-data"><span class="pill-value" id="co2Val">&mdash;</span><span class="pill-desc">CO&sup2; saved (kg/<span id="co2Label">week</span>/ha)</span></div>
+        </div>
+      </div>
+      <button class="pdf-btn" id="pdfBtn" onclick="downloadPDF()">
+        &#8595; Download Simulation Report (PDF)
+      </button>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    This tool uses an approximated ML model and classical FAO-56 Penman-Monteith formula. Not a substitute for field agronomic advice.<br/>
+    Citrus Water Supply Project &middot; Nambona Adeline YANGUERE &middot; Danki Studio
+  </p>
+</div>
+
+<script>
+const KC = {vegetative:0.65, flowering:0.85, fruiting:1.00};
+const KS = {sandy:1.20, loam:1.00, clay:0.85};
+
+function canopyArea(age) {
+  // Logistic curve: age1=~1m2, age3=~3m2, age8=~13m2, age15+=~24m2
+  return 25 / (1 + Math.exp(-0.45 * (age - 7)));
+}
+
+function mlPredict(T, H, W, R, age, stage, soil) {
+  const Tmax = T+8, Tmin = T-8;
+  const Ra = 7.5 + 0.18*T;
+  let ET0 = 0.0023*(T+17.8)*Math.sqrt(Math.max(Tmax-Tmin,1))*Ra;
+  ET0 = Math.max(ET0, 0);
+  const humidFactor = 1 - 0.005*(H-50) - 0.00012*Math.pow(H-50,2);
+  const windFactor  = 1 + (W>15 ? 0.008*(W-15)+0.0002*Math.pow(W-15,1.5) : 0.003*W);
+  const stageSoil   = KC[stage]*KS[soil];
+  const tempBoost   = T>35 ? 1+0.04*(T-35) : 1.0;
+  const canopy      = canopyArea(age);
+  let mlL = ET0*humidFactor*windFactor*stageSoil*tempBoost*canopy;
+  const Peff = Math.min(R*0.80, mlL*0.6);
+  mlL = Math.max(mlL-Peff, 0.5);
+  return Math.round(mlL*10)/10;
+}
+
+function faoPredict(T, H, W, R, age, stage, soil) {
+  const es    = 0.6108*Math.exp((17.27*T)/(T+237.3));
+  const ea    = es*(H/100);
+  const VPD   = Math.max(es-ea, 0);
+  const Rn    = Math.max(0.6*T-4, 0);
+  const delta = 4098*es/Math.pow(T+237.3,2);
+  const gamma = 0.0665;
+  const u2    = W*0.278;
+  const ET0   = Math.max(
+    (0.408*delta*Rn + gamma*(900/(T+273))*u2*VPD) / (delta+gamma*(1+0.34*u2)),
+    0.1
+  );
+  const ETc     = ET0*KC[stage]*KS[soil];
+  const Peff    = Math.min(R*0.80, ETc*0.6);
+  const IrrigMm = Math.max(ETc-Peff, 0.1);
+  const canopy  = canopyArea(age);
+  return Math.round(IrrigMm*canopy*10)/10;
+}
+
+let period = 7;
+function setPeriod(btn) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  period = parseInt(btn.dataset.p);
+}
+
+const presets = {
+  hot:  {temp:42,hum:25,wind:22,rain:0, stage:'fruiting',   soil:'sandy',trees:400,age:10},
+  mild: {temp:22,hum:65,wind:8, rain:2, stage:'vegetative', soil:'loam', trees:350,age:6},
+  fruit:{temp:32,hum:45,wind:12,rain:0, stage:'fruiting',   soil:'sandy',trees:400,age:8},
+  rain: {temp:24,hum:82,wind:6, rain:20,stage:'flowering',  soil:'clay', trees:300,age:12},
+};
+function loadPreset(k) {
+  const p=presets[k];
+  document.getElementById('temp').value =p.temp;
+  document.getElementById('hum').value  =p.hum;
+  document.getElementById('wind').value =p.wind;
+  document.getElementById('rain').value =p.rain;
+  document.getElementById('stage').value=p.stage;
+  document.getElementById('soil').value =p.soil;
+  document.getElementById('trees').value=p.trees;
+  document.getElementById('age').value  =p.age;
+  document.getElementById('tempVal').textContent=p.temp+'°C';
+  document.getElementById('humVal').textContent =p.hum+'%';
+  document.getElementById('windVal').textContent=p.wind+' km/h';
+  document.getElementById('rainVal').textContent=p.rain+' mm';
+}
+
+function fmt(n,d){return n.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmtK(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'k';return n.toFixed(0);}
+const periodNames   = {1:'Day',7:'Week',30:'Month'};
+const periodLabelMap= {1:'day',7:'week',30:'month'};
+
+function calculate() {
+  const T     = parseFloat(document.getElementById('temp').value);
+  const H     = parseFloat(document.getElementById('hum').value);
+  const W     = parseFloat(document.getElementById('wind').value);
+  const R     = parseFloat(document.getElementById('rain').value);
+  const age   = parseFloat(document.getElementById('age').value);
+  const stage = document.getElementById('stage').value;
+  const soil  = document.getElementById('soil').value;
+  const trees = parseFloat(document.getElementById('trees').value);
+  const ha    = parseFloat(document.getElementById('hectares').value);
+  const wCost = parseFloat(document.getElementById('waterCost').value);
+  const eKwh  = parseFloat(document.getElementById('energyKwh').value);
+  const co2f  = parseFloat(document.getElementById('co2factor').value);
+
+  const totalTrees  = trees*ha;
+  const mlDay       = mlPredict(T,H,W,R,age,stage,soil);
+  const faoDay      = faoPredict(T,H,W,R,age,stage,soil);
+  const mlPeriodL   = mlDay*totalTrees*period;
+  const faoPeriodL  = faoDay*totalTrees*period;
+  const mlPeriodM3  = mlPeriodL/1000;
+  const faoPeriodM3 = faoPeriodL/1000;
+  const savedM3     = Math.max(faoPeriodM3-mlPeriodM3,0);
+  const savingsPct  = faoPeriodM3>0?(savedM3/faoPeriodM3*100):0;
+  const costSaved   = savedM3*wCost;
+  const co2Saved    = savedM3*eKwh*co2f;
+  const pLabel      = periodLabelMap[period];
+  const canopy      = canopyArea(age);
+
+  document.getElementById('periodLabel').textContent = periodNames[period]+'ly';
+  document.getElementById('mlMain').textContent  = mlDay+' L';
+  document.getElementById('faoMain').textContent = faoDay+' L';
+  document.getElementById('mlDetail').innerHTML  =
+    '<strong>'+fmt(mlPeriodM3,1)+' m\u00b3</strong> for '+totalTrees.toFixed(0)+' trees over '+period+' day'+(period>1?'s':'')+
+    '<br/>Stage: '+stage+' &middot; Soil: '+soil+' &middot; Canopy: '+canopy.toFixed(1)+' m\u00b2/tree';
+  document.getElementById('faoDetail').innerHTML =
+    '<strong>'+fmt(faoPeriodM3,1)+' m\u00b3</strong> FAO-56 Classical ET\u2080 &times; Kc'+
+    '<br/>Kc = '+KC[stage]+' &middot; Ks = '+KS[soil]+' &middot; Canopy: '+canopy.toFixed(1)+' m\u00b2/tree';
+
+  document.getElementById('mTotalL').textContent  = fmtK(mlPeriodL);
+  document.getElementById('mTotalM3').textContent = fmt(mlPeriodM3,1);
+  document.getElementById('mFaoM3').textContent   = fmt(faoPeriodM3,1);
+  document.getElementById('mSavedM3').textContent = fmt(savedM3,1);
+  ['mLabelL','mLabelM','mLabelF','mLabelS'].forEach(id=>document.getElementById(id).textContent=pLabel);
+
+  document.getElementById('savingsPct').textContent = savingsPct.toFixed(1)+'%';
+  setTimeout(()=>{ document.getElementById('savingsBar').style.width=Math.min(savingsPct,100)+'%'; },50);
+
+  const saveMsg = savedM3>0
+    ? 'ML scheduling saves <strong>'+fmt(savedM3,1)+' m\u00b3</strong> vs FAO-56 over this '+pLabel+'.'
+    : 'ML and FAO estimates are aligned under current conditions.';
+  document.getElementById('savingsText').innerHTML = saveMsg;
+
+  document.getElementById('costVal').textContent = '\u20ac'+fmt(costSaved,2);
+  document.getElementById('co2Val').textContent  = fmt(co2Saved,2)+' kg';
+  ['costLabel','co2Label'].forEach(id=>document.getElementById(id).textContent=pLabel);
+
+  // Agronomic validation
+  const refMin = age<=4 ? 3 : age<=8 ? 10 : 20;
+  const refMax = age<=4 ? 18: age<=8 ? 60 : 130;
+  const valEl  = document.getElementById('validationMsg');
+  if (mlDay>=refMin && mlDay<=refMax) {
+    valEl.className='validation ok';
+    valEl.innerHTML='<strong>&#10003; Agronomically plausible</strong> &mdash; '+mlDay+' L/tree/day is within the expected '+refMin+'&ndash;'+refMax+' L/tree/day for a '+age+'-year-old citrus tree at '+T+'&deg;C. (FAO-56, Univ. Arizona, Wikifarmer)';
+  } else if (mlDay<refMin) {
+    valEl.className='validation low';
+    valEl.innerHTML='<strong>&#9888; Below reference range</strong> &mdash; '+mlDay+' L/tree/day is under expected '+refMin+'&ndash;'+refMax+' L/tree/day. Check temperature or rainfall inputs.';
+  } else {
+    valEl.className='validation high';
+    valEl.innerHTML='<strong>&#9888; Above reference range</strong> &mdash; '+mlDay+' L/tree/day exceeds expected '+refMin+'&ndash;'+refMax+' L/tree/day. Likely extreme heat or very low humidity on sandy soil.';
+  }
+  valEl.style.display='block';
+
+  const card = document.getElementById('resultsCard');
+  card.classList.remove('results-hidden');
+  card.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  setPeriod(document.querySelector('.tab-btn[data-p="7"]'));
+  calculate();
+});
+
+/* ── PDF REPORT GENERATOR ──────────────────────────────────── */
+async function downloadPDF() {
+  const btn = document.getElementById('pdfBtn');
+  btn.disabled = true;
+  btn.textContent = 'Generating PDF...';
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210, H=297, margin=18, cW=174;
+  let y=0;
+
+  const SOIL=[26,26,46], CANOPY=[13,59,43], CITRUS=[245,166,35];
+  const LIME=[126,200,80], WATER=[58,180,242];
+  const WHITE=[240,237,230], MUTED=[140,148,144];
+
+  const sf=(s,sz,c)=>{doc.setFont('helvetica',s);doc.setFontSize(sz);if(c)doc.setTextColor(...c);};
+  const rr=(x,y,w,h,r,s)=>doc.roundedRect(x,y,w,h,r,r,s);
+
+  const inp={
+    trees:   document.getElementById('trees').value,
+    age:     document.getElementById('age').value,
+    stage:   document.getElementById('stage').value,
+    soil:    document.getElementById('soil').value,
+    temp:    document.getElementById('tempVal').textContent,
+    hum:     document.getElementById('humVal').textContent,
+    wind:    document.getElementById('windVal').textContent,
+    rain:    document.getElementById('rainVal').textContent,
+    ha:      document.getElementById('hectares').value,
+    period:  document.querySelector('.tab-btn.active').textContent,
+    cost:    document.getElementById('waterCost').value,
+  };
+  const res={
+    mlDay:   document.getElementById('mlMain').textContent,
+    faoDay:  document.getElementById('faoMain').textContent,
+    mlM3:    document.getElementById('mTotalM3').textContent,
+    faoM3:   document.getElementById('mFaoM3').textContent,
+    savedM3: document.getElementById('mSavedM3').textContent,
+    savings: document.getElementById('savingsPct').textContent,
+    cost:    document.getElementById('costVal').textContent,
+    co2:     document.getElementById('co2Val').textContent,
+    canopy:  (()=>{const d=document.getElementById('mlDetail').textContent;const m=d.match(/Canopy: ([\d.]+)/);return m?m[1]+' m2':'N/A';})(),
+    valTxt:  document.getElementById('validationMsg').textContent.trim().replace(/[^\x20-\x7E]/g,''),
+    valOk:   document.getElementById('validationMsg').classList.contains('ok'),
+  };
+  const dateStr=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
+
+  // HEADER — load logo then draw
+  // logo.png lives at assets/logo.png relative to this page
+  let logoData = null;
+  try {
+    const resp = await fetch('assets/logo.png');
+    if (resp.ok) {
+      const blob = await resp.blob();
+      logoData = await new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result); // base64 data URL
+        reader.readAsDataURL(blob);
+      });
+    }
+  } catch(e) { console.warn('Logo not loaded:', e); }
+
+  doc.setFillColor(...SOIL);   doc.rect(0,0,W,44,'F');
+  doc.setFillColor(...CANOPY); doc.rect(0,44,W,2,'F');
+
+  // Logo: real image if loaded, orange circle fallback
+  if (logoData) {
+    // Logo placed left — 22mm tall, width auto-proportioned (max 30mm wide)
+    doc.addImage(logoData, 'PNG', margin, 11, 22, 22);
+    sf('bold',17,WHITE); doc.text('Citrus Irrigation Report', margin+27, 18);
+    sf('normal',8,MUTED);doc.text('ML-Optimised Decision Support  x  FAO-56 Classical Baseline', margin+27, 25);
+    doc.text('Generated: '+dateStr+'     Period: '+inp.period, margin+27, 32);
+  } else {
+    // Fallback: coloured circle + text
+    doc.setFillColor(...CITRUS); doc.circle(margin+5,22,5,'F');
+    sf('bold',17,WHITE);   doc.text('Citrus Irrigation Report', margin+14,18);
+    sf('normal',8,MUTED);  doc.text('ML-Optimised Decision Support  x  FAO-56 Classical Baseline',margin+14,25);
+    doc.text('Generated: '+dateStr+'     Period: '+inp.period, margin+14,32);
+  }
+
+  sf('bold',8,CITRUS);   doc.text('Danki Studio', W-margin,18,{align:'right'});
+  sf('normal',7,MUTED);  doc.text('dankistudio.com', W-margin,24,{align:'right'});
+  doc.text('Nambona Adeline YANGUERE', W-margin,30,{align:'right'});
+  y=52;
+
+  // INPUTS TABLE
+  sf('bold',9,CITRUS); doc.text('ORCHARD & ENVIRONMENTAL INPUTS',margin,y);
+  doc.setFillColor(...CITRUS); doc.rect(margin,y+1.5,46,0.5,'F');
+  y+=8;
+  const rows=[
+    ['Trees / ha',inp.trees,   'Tree age',  inp.age+' yrs'],
+    ['Growth stage',inp.stage, 'Soil type', inp.soil],
+    ['Temperature', inp.temp,  'Humidity',  inp.hum],
+    ['Wind speed',  inp.wind,  'Rainfall',  inp.rain],
+    ['Hectares',    inp.ha,    'Period',    inp.period],
+    ['Water cost',  inp.cost+' EUR/m3','Canopy/tree',res.canopy],
+  ];
+  const hw=cW/2-2;
+  rows.forEach((r,i)=>{
+    const ry=y+i*9;
+    if(i%2===0){doc.setFillColor(28,32,50);rr(margin,ry-4,cW,8,1,'F');}
+    sf('normal',7.5,MUTED); doc.text(r[0],margin+3,ry);
+    sf('bold',7.5,WHITE);   doc.text(String(r[1]),margin+3+hw*0.48,ry);
+    sf('normal',7.5,MUTED); doc.text(r[2],margin+hw+6,ry);
+    sf('bold',7.5,WHITE);   doc.text(String(r[3]),margin+hw+6+hw*0.48,ry);
+  });
+  y+=rows.length*9+8;
+
+  // DUAL TRACK
+  sf('bold',9,CITRUS); doc.text('DUAL-TRACK RESULTS',margin,y);
+  doc.setFillColor(...CITRUS); doc.rect(margin,y+1.5,30,0.5,'F');
+  y+=8;
+  const bw=(cW-4)/2;
+  // ML
+  doc.setFillColor(...CANOPY);rr(margin,y,bw,36,2,'F');
+  doc.setDrawColor(...LIME);  rr(margin,y,bw,36,2,'S');
+  sf('bold',7,LIME);   doc.text('ML MODEL PREDICTION',margin+4,y+7);
+  sf('bold',20,LIME);  doc.text(res.mlDay,margin+4,y+20);
+  sf('normal',7,MUTED);doc.text('per tree / day',margin+4,y+26);
+  doc.text('Total '+inp.period.toLowerCase()+': '+res.mlM3+' m3',margin+4,y+32);
+  // FAO
+  const fx=margin+bw+4;
+  doc.setFillColor(15,35,55);rr(fx,y,bw,36,2,'F');
+  doc.setDrawColor(...WATER); rr(fx,y,bw,36,2,'S');
+  sf('bold',7,WATER);  doc.text('FAO-56 CLASSICAL BASELINE',fx+4,y+7);
+  sf('bold',20,WATER); doc.text(res.faoDay,fx+4,y+20);
+  sf('normal',7,MUTED);doc.text('per tree / day',fx+4,y+26);
+  doc.text('Total '+inp.period.toLowerCase()+': '+res.faoM3+' m3',fx+4,y+32);
+  y+=42;
+
+  // METRICS
+  sf('bold',9,CITRUS); doc.text('EFFICIENCY SUMMARY',margin,y);
+  doc.setFillColor(...CITRUS); doc.rect(margin,y+1.5,32,0.5,'F');
+  y+=8;
+  const metrics=[
+    {l:'Water Saved',v:res.savedM3+' m3',c:LIME},
+    {l:'Savings vs FAO',v:res.savings,c:LIME},
+    {l:'Cost Saved',v:res.cost,c:CITRUS},
+    {l:'CO2 Avoided',v:res.co2,c:WATER},
+  ];
+  const mw=(cW-6)/4;
+  metrics.forEach((m,i)=>{
+    const mx=margin+i*(mw+2);
+    doc.setFillColor(22,28,44);rr(mx,y,mw,22,2,'F');
+    sf('bold',12,m.c);     doc.text(m.v,mx+mw/2,y+12,{align:'center'});
+    sf('normal',6,MUTED);  doc.text(m.l,mx+mw/2,y+18,{align:'center'});
+  });
+  y+=28;
+
+  // SAVINGS BAR
+  const pct=parseFloat(res.savings)||0;
+  doc.setFillColor(30,36,54);rr(margin,y,cW,7,2,'F');
+  if(pct>0){doc.setFillColor(...LIME);rr(margin,y,cW*Math.min(pct/100,1),7,2,'F');}
+  sf('bold',6,SOIL); doc.text('  '+res.savings+' efficiency vs FAO-56',margin+2,y+5);
+  y+=13;
+
+  // VALIDATION
+  const vbg=res.valOk?[13,40,20]:[45,30,10], vc=res.valOk?LIME:CITRUS;
+  doc.setFillColor(...vbg);rr(margin,y,cW,18,2,'F');
+  doc.setDrawColor(...vc); rr(margin,y,cW,18,2,'S');
+  sf('bold',7,vc); doc.text(res.valOk?'AGRONOMIC VALIDATION - PASS':'AGRONOMIC CHECK - REVIEW',margin+4,y+6);
+  sf('normal',6.5,WHITE);
+  const vlines=doc.splitTextToSize(res.valTxt,cW-8);
+  doc.text(vlines.slice(0,3),margin+4,y+12);
+  y+=24;
+
+  // SCREENSHOT
+  try {
+    const canvas=await html2canvas(document.getElementById('resultsCard'),{
+      scale:1.4,backgroundColor:'#1a1a2e',useCORS:true,logging:false
+    });
+    const img=canvas.toDataURL('image/jpeg',0.85);
+    const ih=(canvas.height/canvas.width)*cW;
+    if(y+ih+20>H-15){doc.addPage();doc.setFillColor(...SOIL);doc.rect(0,0,W,H,'F');y=margin;}
+    sf('bold',9,CITRUS); doc.text('RESULTS SNAPSHOT',margin,y);
+    doc.setFillColor(...CITRUS); doc.rect(margin,y+1.5,28,0.5,'F');
+    y+=7;
+    doc.addImage(img,'JPEG',margin,y,cW,ih);
+    y+=ih+6;
+  } catch(e){console.warn('Screenshot skipped:',e);}
+
+  // FOOTER
+  const np=doc.getNumberOfPages();
+  for(let p=1;p<=np;p++){
+    doc.setPage(p);
+    doc.setFillColor(...SOIL);   doc.rect(0,H-12,W,12,'F');
+    doc.setFillColor(...CANOPY); doc.rect(0,H-12,W,1,'F');
+    sf('normal',6,MUTED);
+    doc.text('Citrus Water Supply Project  x  Nambona Adeline YANGUERE  x  Danki Studio',margin,H-5);
+    doc.text('Page '+p+'/'+np,W-margin,H-5,{align:'right'});
+    // Footer logo (small)
+    if (logoData) { try { doc.addImage(logoData,'PNG',W-margin-10,H-11,10,8); } catch(e){} }
+    sf('normal',5.5,[70,70,70]);
+    doc.text('Approximated ML model. Not a substitute for field agronomic advice.',margin,H-2);
+  }
+
+  const fname='citrus-irrigation-'+inp.stage+'-'+inp.temp.replace(/[^0-9]/g,'')+'c-'+new Date().toISOString().slice(0,10)+'.pdf';
+  doc.save(fname);
+
+  btn.disabled=false;
+  btn.textContent='Download Simulation Report (PDF)';
+}
+</script>
+</body>
+</html>
+```

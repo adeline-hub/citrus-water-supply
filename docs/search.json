@@ -4,14 +4,28 @@
     "href": "index.html",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "",
-    "text": "Efficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance.\n\n\n\n\nThe dataset contains 2,000 daily observations including:\n\nTemperature (°C)\nHumidity (%)\nWind speed (km/h)\nRainfall (mm)\nTree age (years)\nSoil type (categorical)\nGrowth stage (categorical)\nTarget: water_need_liters\n\n\n\n\n\nTable 1: Descriptive statistics of numeric variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntemperature_c\nhumidity_pct\nwind_speed_kmh\nrainfall_mm\ntree_age_years\nwater_need_liters\n\n\n\n\ncount\n2000\n2000\n2000\n2000\n2000\n2000\n\n\nmean\n27.61\n55.25\n7.65\n2.96\n14.81\n3.6\n\n\nstd\n7.01\n17.72\n7.81\n2.86\n8.39\n3.05\n\n\nmin\n5\n10\n0\n0\n1\n0\n\n\n25%\n22.98\n42.9\n2.1\n0.98\n8\n1\n\n\n50%\n27.8\n55.25\n5.3\n2.1\n15\n3.2\n\n\n75%\n32.2\n67.3\n10.2\n4.1\n22\n5.5\n\n\nmax\n48\n98\n45\n19\n29\n19.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Pearson correlation matrix.\n\n\n\n\n\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
+    "text": "Efficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance.\n\nExecutive Synthesis\nBy transforming environmental data into predictive irrigation recommendations, this project moves citrus water management from static scheduling to adaptive optimization. The approach supports measurable reductions in water usage, operating costs, and climate-related production risk, providing a scalable pathway toward precision agriculture at commercial scale.\n\n\n\n\n\nThe FAO-56 Penman-Monteith framework provides a physically grounded method for estimating reference evapotranspiration. However, operational irrigation management in commercial orchards often relies on:\n\nStatic crop coefficients\nManual rule adjustments\nSimplified stress assumptions\nCalendar-based irrigation cycles\n\nThese methods assume that environmental variables affect water demand in relatively linear and separable ways.\nIn practice, this assumption is rarely true.\nWater demand depends on complex, nonlinear interactions between:\n\nTemperature thresholds\nHumidity gradients\nWind intensity\nSoil retention characteristics\nGrowth stage sensitivity\n\nTraditional models require explicit parameter tuning to capture these effects. They do not automatically learn interactions from historical variability.\n\n\n\nMachine learning does not replace agronomic theory — it extends it.\nInstead of manually specifying every interaction term, supervised learning:\n\nLearns nonlinear relationships directly from observed data\nCaptures interaction effects automatically 3.Quantifies predictive uncertainty\nAdapts when retrained on new climate patterns\n\nFor example:\n\nHigh temperature combined with low humidity does not increase evapotranspiration linearly.\nWind impact differs significantly between sandy and clay soils.\nFruiting-stage trees respond differently to identical environmental conditions compared to vegetative-stage trees. Tree-based ensemble models (e.g., XGBoost) are particularly effective at modeling such conditional relationships without requiring explicit physical equations for each scenario.\n\n\n\n\nFAO-56 remains the physical reference standard.\nHowever:\n\nIt assumes idealized conditions.\nIt requires multiple meteorological inputs (including radiation).\nIt does not optimize irrigation decisions at the operational level.\n\nMachine learning enables:\n\nIntegration of heterogeneous data sources\nCalibration to specific orchard conditions\nAdaptation to microclimates\nData-driven adjustment of coefficients\n\nIn other words, FAO-56 estimates evapotranspiration. Machine learning optimizes irrigation decisions under real-world variability.\n\n\n\nFrom an operational perspective, ML-driven irrigation scheduling:\n\nReduces systematic over-irrigation\nImproves allocation across orchard blocks\nSupports climate adaptation\nProvides measurable performance metrics (R², MAE, validation error)\n\nIt transforms irrigation from a rule-based system into a continuously learnable system.\n\n\n\n\n\n\n\n\n\n\n\nCriterion\nFAO-56 (Physics-Based)\nMachine Learning (Data-Driven)\n\n\n\n\nFoundation\nPhysical equations (Penman-Monteith)\nLearned from observed data\n\n\nNonlinear interactions\nRequires manual parameterization\nCaptured automatically\n\n\nAdaptation to local conditions\nGeneric coefficients\nCalibrated to specific orchards\n\n\nData requirements\nRadiation, wind, humidity, temperature\nAny available environmental variables\n\n\nMissing data tolerance\nDegrades significantly\nHandles partial inputs\n\n\nRetraining\nNot applicable\nContinuous improvement with new data\n\n\nInterpretability\nHigh (physical meaning)\nModerate (feature importance, SHAP)\n\n\nOperational optimization\nEstimates ET₀ only\nOptimizes irrigation decisions\n\n\nClimate adaptation\nStatic coefficients\nAdapts to distributional shifts\n\n\nScalability\nManual per-zone tuning\nAutomated across orchard blocks\n\n\nAccuracy measurement\nTheoretical validation\nQuantifiable (R², MAE, RMSE, CV)\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Comparison of physics-based (FAO-56) and data-driven (ML) irrigation modeling approaches.\n\n\n\n\n\n\n\n\n\n\n\nIrrigation represents one of the largest variable costs in citrus production, particularly in regions exposed to:\n\nWater scarcity\nRising energy costs\nIncreasing climate variability\nRegulatory constraints on groundwater extraction\n\nTraditional irrigation scheduling methods rely on static coefficients and manual adjustments. While agronomically sound, they do not dynamically adapt to daily environmental fluctuations or nonlinear stress interactions.\nThis project introduces a predictive modeling framework designed to improve irrigation precision and operational efficiency.\n\n\n\nAssume a commercial citrus orchard with:\n\n400 trees per hectare\nAverage annual irrigation requirement: ~5,000–8,000 m³ per hectare\nPumping cost: €0.10–€0.25 per m³ (water + energy)\n\nIf machine learning–based optimization reduces excess irrigation by 10%, the impact per hectare becomes:\n\nWater savings: 500–800 m³ per year\nDirect cost savings: €50–€200 per hectare annually\nReduced nutrient leaching and runoff\nLower energy consumption for pumping\n\nAt scale:\nFor a 100-hectare orchard:\n\n50,000–80,000 m³ water saved annually\n€5,000–€20,000 in operational cost reduction\n\nThis does not account for indirect gains such as:\n\nImproved fruit quality under optimized water stress\nReduced disease pressure from over-irrigation\nEnhanced resilience during heat waves\n\n\n\n\nThe model contributes to citrus industry efficiency in four measurable ways:\n\nResource Optimization By dynamically estimating daily water demand, the system:\n\n\nMinimizes over-application\nAligns irrigation with actual evapotranspiration drivers\nReduces variability across orchard zones\n\n\nCost Control Precise water allocation reduces:\n\n\nPumping energy costs\nMaintenance strain on irrigation infrastructure\nRisk of regulatory penalties in water-restricted regions\n\n\nRisk Mitigation Under climate volatility, predictive irrigation scheduling:\n\n\nReduces exposure to heat stress\nImproves yield stability\nEnables proactive rather than reactive management\n\n\nScalable Digital Infrastructure This framework can evolve into:\n\n\nSensor-integrated irrigation control\nZone-level optimization models\nAPI-based decision support systems\nReal-time dashboards for agronomic teams\n\n\n\n\n\nThe dataset contains 2,000 daily observations including:\n\nTemperature (°C)\nHumidity (%)\nWind speed (km/h)\nRainfall (mm)\nTree age (years)\nSoil type (categorical)\nGrowth stage (categorical)\nTarget: water_need_liters\n\n\n\n\n\nTable 1: Descriptive statistics of numeric variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntemperature_c\nhumidity_pct\nwind_speed_kmh\nrainfall_mm\ntree_age_years\nwater_need_liters\n\n\n\n\ncount\n2000\n2000\n2000\n2000\n2000\n2000\n\n\nmean\n27.61\n55.25\n7.65\n2.96\n14.81\n3.6\n\n\nstd\n7.01\n17.72\n7.81\n2.86\n8.39\n3.05\n\n\nmin\n5\n10\n0\n0\n1\n0\n\n\n25%\n22.98\n42.9\n2.1\n0.98\n8\n1\n\n\n50%\n27.8\n55.25\n5.3\n2.1\n15\n3.2\n\n\n75%\n32.2\n67.3\n10.2\n4.1\n22\n5.5\n\n\nmax\n48\n98\n45\n19\n29\n19.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Pearson correlation matrix.\n\n\n\n\n\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
   },
   {
     "objectID": "index.html#problem-statement",
     "href": "index.html#problem-statement",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "",
-    "text": "Efficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance."
+    "text": "Efficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance.\n\nExecutive Synthesis\nBy transforming environmental data into predictive irrigation recommendations, this project moves citrus water management from static scheduling to adaptive optimization. The approach supports measurable reductions in water usage, operating costs, and climate-related production risk, providing a scalable pathway toward precision agriculture at commercial scale."
+  },
+  {
+    "objectID": "index.html#why-use-machine-learning-for-irrigation-optimization",
+    "href": "index.html#why-use-machine-learning-for-irrigation-optimization",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "",
+    "text": "The FAO-56 Penman-Monteith framework provides a physically grounded method for estimating reference evapotranspiration. However, operational irrigation management in commercial orchards often relies on:\n\nStatic crop coefficients\nManual rule adjustments\nSimplified stress assumptions\nCalendar-based irrigation cycles\n\nThese methods assume that environmental variables affect water demand in relatively linear and separable ways.\nIn practice, this assumption is rarely true.\nWater demand depends on complex, nonlinear interactions between:\n\nTemperature thresholds\nHumidity gradients\nWind intensity\nSoil retention characteristics\nGrowth stage sensitivity\n\nTraditional models require explicit parameter tuning to capture these effects. They do not automatically learn interactions from historical variability.\n\n\n\nMachine learning does not replace agronomic theory — it extends it.\nInstead of manually specifying every interaction term, supervised learning:\n\nLearns nonlinear relationships directly from observed data\nCaptures interaction effects automatically 3.Quantifies predictive uncertainty\nAdapts when retrained on new climate patterns\n\nFor example:\n\nHigh temperature combined with low humidity does not increase evapotranspiration linearly.\nWind impact differs significantly between sandy and clay soils.\nFruiting-stage trees respond differently to identical environmental conditions compared to vegetative-stage trees. Tree-based ensemble models (e.g., XGBoost) are particularly effective at modeling such conditional relationships without requiring explicit physical equations for each scenario.\n\n\n\n\nFAO-56 remains the physical reference standard.\nHowever:\n\nIt assumes idealized conditions.\nIt requires multiple meteorological inputs (including radiation).\nIt does not optimize irrigation decisions at the operational level.\n\nMachine learning enables:\n\nIntegration of heterogeneous data sources\nCalibration to specific orchard conditions\nAdaptation to microclimates\nData-driven adjustment of coefficients\n\nIn other words, FAO-56 estimates evapotranspiration. Machine learning optimizes irrigation decisions under real-world variability.\n\n\n\nFrom an operational perspective, ML-driven irrigation scheduling:\n\nReduces systematic over-irrigation\nImproves allocation across orchard blocks\nSupports climate adaptation\nProvides measurable performance metrics (R², MAE, validation error)\n\nIt transforms irrigation from a rule-based system into a continuously learnable system.\n\n\n\n\n\n\n\n\n\n\n\nCriterion\nFAO-56 (Physics-Based)\nMachine Learning (Data-Driven)\n\n\n\n\nFoundation\nPhysical equations (Penman-Monteith)\nLearned from observed data\n\n\nNonlinear interactions\nRequires manual parameterization\nCaptured automatically\n\n\nAdaptation to local conditions\nGeneric coefficients\nCalibrated to specific orchards\n\n\nData requirements\nRadiation, wind, humidity, temperature\nAny available environmental variables\n\n\nMissing data tolerance\nDegrades significantly\nHandles partial inputs\n\n\nRetraining\nNot applicable\nContinuous improvement with new data\n\n\nInterpretability\nHigh (physical meaning)\nModerate (feature importance, SHAP)\n\n\nOperational optimization\nEstimates ET₀ only\nOptimizes irrigation decisions\n\n\nClimate adaptation\nStatic coefficients\nAdapts to distributional shifts\n\n\nScalability\nManual per-zone tuning\nAutomated across orchard blocks\n\n\nAccuracy measurement\nTheoretical validation\nQuantifiable (R², MAE, RMSE, CV)\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Comparison of physics-based (FAO-56) and data-driven (ML) irrigation modeling approaches."
+  },
+  {
+    "objectID": "index.html#strategic-impact-assessment",
+    "href": "index.html#strategic-impact-assessment",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "",
+    "text": "Irrigation represents one of the largest variable costs in citrus production, particularly in regions exposed to:\n\nWater scarcity\nRising energy costs\nIncreasing climate variability\nRegulatory constraints on groundwater extraction\n\nTraditional irrigation scheduling methods rely on static coefficients and manual adjustments. While agronomically sound, they do not dynamically adapt to daily environmental fluctuations or nonlinear stress interactions.\nThis project introduces a predictive modeling framework designed to improve irrigation precision and operational efficiency.\n\n\n\nAssume a commercial citrus orchard with:\n\n400 trees per hectare\nAverage annual irrigation requirement: ~5,000–8,000 m³ per hectare\nPumping cost: €0.10–€0.25 per m³ (water + energy)\n\nIf machine learning–based optimization reduces excess irrigation by 10%, the impact per hectare becomes:\n\nWater savings: 500–800 m³ per year\nDirect cost savings: €50–€200 per hectare annually\nReduced nutrient leaching and runoff\nLower energy consumption for pumping\n\nAt scale:\nFor a 100-hectare orchard:\n\n50,000–80,000 m³ water saved annually\n€5,000–€20,000 in operational cost reduction\n\nThis does not account for indirect gains such as:\n\nImproved fruit quality under optimized water stress\nReduced disease pressure from over-irrigation\nEnhanced resilience during heat waves\n\n\n\n\nThe model contributes to citrus industry efficiency in four measurable ways:\n\nResource Optimization By dynamically estimating daily water demand, the system:\n\n\nMinimizes over-application\nAligns irrigation with actual evapotranspiration drivers\nReduces variability across orchard zones\n\n\nCost Control Precise water allocation reduces:\n\n\nPumping energy costs\nMaintenance strain on irrigation infrastructure\nRisk of regulatory penalties in water-restricted regions\n\n\nRisk Mitigation Under climate volatility, predictive irrigation scheduling:\n\n\nReduces exposure to heat stress\nImproves yield stability\nEnables proactive rather than reactive management\n\n\nScalable Digital Infrastructure This framework can evolve into:\n\n\nSensor-integrated irrigation control\nZone-level optimization models\nAPI-based decision support systems\nReal-time dashboards for agronomic teams"
   },
   {
     "objectID": "index.html#dataset-description",
@@ -25,21 +39,21 @@
     "href": "index.html#correlation-structure",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "",
-    "text": "Figure 1: Pearson correlation matrix.\n\n\n\n\n\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
+    "text": "Figure 2: Pearson correlation matrix.\n\n\n\n\n\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
   },
   {
     "objectID": "index.html#temperaturedemand-relationship",
     "href": "index.html#temperaturedemand-relationship",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "2.1 Temperature–Demand Relationship",
-    "text": "2.1 Temperature–Demand Relationship\n\n\n\n\n\n\n\n\nFigure 2: Non-linear relationship between temperature and irrigation demand.\n\n\n\n\n\nThe relationship is non-linear and amplified under low humidity conditions."
+    "text": "2.1 Temperature–Demand Relationship\n\n\n\n\n\n\n\n\nFigure 3: Non-linear relationship between temperature and irrigation demand.\n\n\n\n\n\nThe relationship is non-linear and amplified under low humidity conditions."
   },
   {
     "objectID": "index.html#agronomic-segmentation",
     "href": "index.html#agronomic-segmentation",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "2.2 Agronomic Segmentation",
-    "text": "2.2 Agronomic Segmentation\n\n\n\n\n\n\n\n\nFigure 3: Distribution of water demand across growth stages and soil types.\n\n\n\n\n\nKey finding: Fruiting-stage trees on sandy soils demonstrate the highest median demand."
+    "text": "2.2 Agronomic Segmentation\n\n\n\n\n\n\n\n\nFigure 4: Distribution of water demand across growth stages and soil types.\n\n\n\n\n\nKey finding: Fruiting-stage trees on sandy soils demonstrate the highest median demand."
   },
   {
     "objectID": "index.html#lookup-aggregation",
@@ -47,6 +61,13 @@
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "2.3 Lookup Aggregation",
     "text": "2.3 Lookup Aggregation\n\n\n\n\nTable 2: Median water demand by temperature band and growth stage.\n\n\n\n\n\n\ngrowth_stage\n&lt;20°C\n20-30°C\n30-40°C\n&gt;40°C\n\n\n\n\nFlowering\n1.5\n3.2\n4.8\n5.4\n\n\nFruiting\n2.4\n3.8\n6.2\n8.6\n\n\nVegetative\n0.6\n2\n3.2\n5"
+  },
+  {
+    "objectID": "index.html#target-variable-formulation",
+    "href": "index.html#target-variable-formulation",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "3.1 Target Variable Formulation",
+    "text": "3.1 Target Variable Formulation\nTo ensure agronomic validity, the target variable (\\(y = \\text{Water Need}\\)) was synthesized based on the FAO-56 Penman-Monteith framework, the global standard for irrigation scheduling [1].\nDue to the practical constraints of sensor availability (specifically solar radiation), Reference Evapotranspiration (\\(ET_0\\)) was estimated using the Hargreaves-Samani equation, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:\n\\[\nET_0 = 0.0023 \\cdot (T_{mean} + 17.8) \\cdot \\sqrt{T_{max} - T_{min}} \\cdot R_a\n\\]\nThe final Crop Evapotranspiration (\\(ET_c\\)) was derived as:\n\\[\nET_c = ET_0 \\times K_c \\times K_s - P_{eff}\n\\]\nWhere:\n\n\\(K_c\\) (Crop Coefficient): Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).\n\\(K_s\\) (Soil Stress Coefficient): Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).\n\\(P_{eff}\\) (Effective Rainfall): Accounted for as 80% of daily precipitation.\n\n\n\n\n\n\n\nMethodological Note\n\n\n\nWhile the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates (\\(r &gt; 0.95\\)) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable."
   },
   {
     "objectID": "index.html#feature-engineering",
@@ -67,7 +88,7 @@
     "href": "index.html#feature-importance",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "4.1 Feature Importance",
-    "text": "4.1 Feature Importance\n\n\n\n\n\n\n\n\nFigure 4: Normalized feature importance from XGBoost.\n\n\n\n\n\nTemperature is the dominant explanatory variable, followed by humidity and wind speed."
+    "text": "4.1 Feature Importance\n\n\n\n\n\n\n\n\nFigure 5: Normalized feature importance from XGBoost.\n\n\n\n\n\nTemperature is the dominant explanatory variable, followed by humidity and wind speed."
   },
   {
     "objectID": "index.html#operational-implications",
@@ -77,129 +98,87 @@
     "text": "4.2 Operational Implications\nBased on model outputs:\n\nTemperature Sensitivity: Irrigation demand increases exponentially beyond 30°C.\nGrowth Stages: Fruiting-stage trees require ~30–50% more water than vegetative stage trees.\nSoil Factors: Sandy soils amplify irrigation sensitivity and require more frequent, smaller water applications.\nWind Effect: Wind speeds &gt;15 km/h significantly increase evapotranspiration effects."
   },
   {
-    "objectID": "index.html#limitations",
-    "href": "index.html#limitations",
-    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
-    "section": "4.3 4.3 Limitations",
-    "text": "4.3 4.3 Limitations\n\nSynthetic dataset (not field sensor data)\nNo seasonal time-series modeling\nNo soil moisture sensor integration"
-  },
-  {
-    "objectID": "index.html#future-work",
-    "href": "index.html#future-work",
-    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
-    "section": "4.4 4.4 Future Work",
-    "text": "4.4 4.4 Future Work\n\nIncorporate real ET₀ meteorological data\nAdd time-series forecasting\nDeploy real-time dashboard (Marimo or Streamlit)\nIntegrate IoT soil moisture measurements"
-  },
-  {
-    "objectID": "index.html#problem-statement-1",
-    "href": "index.html#problem-statement-1",
-    "title": "```markdown",
-    "section": "7.1 Problem Statement",
-    "text": "7.1 Problem Statement\nEfficient irrigation management is critical for citrus production under increasing climate variability. Over-irrigation wastes resources and increases disease risk, while under-irrigation reduces yield and fruit quality.\nThis study aims to:\n\nQuantify drivers of daily water demand (L/tree/day).\nBuild a predictive regression model.\nProvide operational irrigation guidance."
-  },
-  {
-    "objectID": "index.html#dataset-description-1",
-    "href": "index.html#dataset-description-1",
-    "title": "```markdown",
-    "section": "7.2 Dataset Description",
-    "text": "7.2 Dataset Description\nThe dataset contains 2,000 daily observations including:\n\nTemperature (°C)\nHumidity (%)\nWind speed (km/h)\nRainfall (mm)\nTree age (years)\nSoil type (categorical)\nGrowth stage (categorical)\nTarget: water_need_liters\n\nquarto-executable-code-5450563D\n#| label: tbl-describe\n#| tbl-cap: \"Descriptive statistics of numeric variables.\"\n#| echo: false\n\nMarkdown(df.describe().round(2).to_markdown())"
-  },
-  {
-    "objectID": "index.html#correlation-structure-1",
-    "href": "index.html#correlation-structure-1",
-    "title": "```markdown",
-    "section": "7.3 Correlation Structure",
-    "text": "7.3 Correlation Structure\nquarto-executable-code-5450563D\n#| label: fig-corr\n#| fig-cap: \"Pearson correlation matrix.\"\n\nfig_corr = plot_correlation_heatmap(df)\nplt.show()\nObservation: Temperature exhibits the strongest linear association with water demand, followed by wind speed and humidity."
-  },
-  {
-    "objectID": "index.html#temperaturedemand-relationship-1",
-    "href": "index.html#temperaturedemand-relationship-1",
-    "title": "```markdown",
-    "section": "8.1 Temperature–Demand Relationship",
-    "text": "8.1 Temperature–Demand Relationship\nquarto-executable-code-5450563D\n#| label: fig-temp\n#| fig-cap: \"Non-linear relationship between temperature and irrigation demand.\"\n\nfig_temp = plot_temp_vs_water(df)\nplt.show()\nThe relationship is non-linear and amplified under low humidity conditions."
-  },
-  {
-    "objectID": "index.html#agronomic-segmentation-1",
-    "href": "index.html#agronomic-segmentation-1",
-    "title": "```markdown",
-    "section": "8.2 Agronomic Segmentation",
-    "text": "8.2 Agronomic Segmentation\nquarto-executable-code-5450563D\n#| label: fig-growth\n#| fig-cap: \"Distribution of water demand across growth stages and soil types.\"\n\nfig_growth = plot_growth_stage_box(df)\nplt.show()\nKey finding: Fruiting-stage trees on sandy soils demonstrate the highest median demand."
-  },
-  {
-    "objectID": "index.html#lookup-aggregation-1",
-    "href": "index.html#lookup-aggregation-1",
-    "title": "```markdown",
-    "section": "8.3 Lookup Aggregation",
-    "text": "8.3 Lookup Aggregation\nquarto-executable-code-5450563D\n#| label: tbl-lookup\n#| tbl-cap: \"Median water demand by temperature band and growth stage.\"\n#| echo: false\n\nbins = pd.cut(df[\"temperature_c\"], bins=[0, 20, 30, 40, 50],\n              labels=[\"&lt;20°C\", \"20-30°C\", \"30-40°C\", \"&gt;40°C\"])\n\nlookup = (\n    df.assign(temp_band=bins)\n      .groupby([\"growth_stage\", \"temp_band\"], observed=True)\n      [\"water_need_liters\"]\n      .median()\n      .round(1)\n      .unstack()\n)\n\nMarkdown(lookup.to_markdown())"
-  },
-  {
-    "objectID": "index.html#feature-engineering-1",
-    "href": "index.html#feature-engineering-1",
-    "title": "```markdown",
-    "section": "9.2 Feature Engineering",
-    "text": "9.2 Feature Engineering\nCategorical variables were label-encoded for the regression model.\nquarto-executable-code-5450563D\n#| label: feature-engineering\n\n# Create a copy for modeling\ndf_model = df.copy()\n\n# Encode categorical variables\nle_soil = LabelEncoder()\nle_stage = LabelEncoder()\n\ndf_model[\"soil_type_enc\"] = le_soil.fit_transform(df_model[\"soil_type\"])\ndf_model[\"growth_stage_enc\"] = le_stage.fit_transform(df_model[\"growth_stage\"])\n\nfeatures = [\n    \"temperature_c\",\n    \"humidity_pct\",\n    \"wind_speed_kmh\",\n    \"rainfall_mm\",\n    \"tree_age_years\",\n    \"soil_type_enc\",\n    \"growth_stage_enc\",\n]\n\nX = df_model[features]\ny = df_model[\"water_need_liters\"]\n\n# Split data (80% train, 20% test)\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nprint(f\"Training samples: {len(X_train)}\")\nprint(f\"Testing samples: {len(X_test)}\")\nquarto-executable-code-5450563D\n#| label: tbl-features\n#| tbl-cap: \"Model Input Features\"\n#| echo: false\n\nfeature_metadata = pd.DataFrame({\n    \"Feature Name\": [\n        \"Temperature\", \"Humidity\", \"Wind Speed\", \n        \"Rainfall\", \"Tree Age\", \"Soil Type\", \"Growth Stage\"\n    ],\n    \"Data Type\": [\n        \"Float\", \"Float\", \"Float\", \n        \"Float\", \"Integer\", \"Categorical (Encoded)\", \"Categorical (Encoded)\"\n    ],\n    \"Unit / Description\": [\n        \"Daily Mean (°C)\", \"Relative (%)\", \"km/h\", \n        \"mm/day\", \"Years since planting\", \"Sandy/Loam/Clay\", \"Phenological stage\"\n    ]\n})\n\nMarkdown(feature_metadata.to_markdown(index=False))"
-  },
-  {
-    "objectID": "index.html#model-selection-1",
-    "href": "index.html#model-selection-1",
-    "title": "```markdown",
-    "section": "9.3 Model Selection",
-    "text": "9.3 Model Selection\nWe selected XGBoost Regressor due to its non-linear modeling capacity and robustness to multicollinearity.\nquarto-executable-code-5450563D\n#| label: model-training\n\nmodel = XGBRegressor(\n    n_estimators=300,\n    max_depth=5,\n    learning_rate=0.08,\n    random_state=42\n)\n\nmodel.fit(X_train, y_train)\n\ny_pred = model.predict(X_test)\n\nr2 = r2_score(y_test, y_pred)\nmae = mean_absolute_error(y_test, y_pred)\nrmse = np.sqrt(mean_squared_error(y_test, y_pred))\n\ncv_scores = cross_val_score(model, X, y, cv=5, scoring=\"r2\")\n\nprint(f\"Test R²: {r2:.3f}\")\nprint(f\"MAE (L): {mae:.2f}\")\nprint(f\"RMSE (L): {rmse:.2f}\")\nprint(f\"Cross-validated R²: {cv_scores.mean():.3f}\")"
-  },
-  {
-    "objectID": "index.html#feature-importance-1",
-    "href": "index.html#feature-importance-1",
-    "title": "```markdown",
-    "section": "10.1 Feature Importance",
-    "text": "10.1 Feature Importance\nquarto-executable-code-5450563D\n#| label: fig-importance\n#| fig-cap: \"Normalized feature importance from XGBoost.\"\n\nimportance = dict(zip(features, model.feature_importances_))\nfig_imp = plot_feature_importance(importance)\nplt.show()\nTemperature is the dominant explanatory variable, followed by humidity and wind speed."
-  },
-  {
-    "objectID": "index.html#operational-implications-1",
-    "href": "index.html#operational-implications-1",
-    "title": "```markdown",
-    "section": "10.2 Operational Implications",
-    "text": "10.2 Operational Implications\nBased on model outputs:\n\nTemperature Sensitivity: Irrigation demand increases exponentially beyond 30°C.\nGrowth Stages: Fruiting-stage trees require ~30–50% more water than vegetative stage trees.\nSoil Factors: Sandy soils amplify irrigation sensitivity and require more frequent, smaller water applications.\nWind Effect: Wind speeds &gt;15 km/h significantly increase evapotranspiration effects."
-  },
-  {
-    "objectID": "index.html#limitations-1",
-    "href": "index.html#limitations-1",
-    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
-    "section": "9.3 4.3 Limitations",
-    "text": "9.3 4.3 Limitations\n\nSynthetic dataset (not field sensor data)\nNo seasonal time-series modeling\nNo soil moisture sensor integration"
-  },
-  {
-    "objectID": "index.html#future-work-1",
-    "href": "index.html#future-work-1",
-    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
-    "section": "9.4 4.4 Future Work",
-    "text": "9.4 4.4 Future Work\n\nIncorporate real ET₀ meteorological data\nAdd time-series forecasting\nDeploy real-time dashboard (Marimo or Streamlit)\nIntegrate IoT soil moisture measurements"
-  },
-  {
-    "objectID": "index.html#target-variable-formulation",
-    "href": "index.html#target-variable-formulation",
-    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
-    "section": "3.1 Target Variable Formulation",
-    "text": "3.1 Target Variable Formulation\nTo ensure agronomic validity, the target variable (\\(y = \\text{Water Need}\\)) was synthesized based on the FAO-56 Penman-Monteith framework, the global standard for irrigation scheduling [1].\nDue to the practical constraints of sensor availability (specifically solar radiation), Reference Evapotranspiration (\\(ET_0\\)) was estimated using the Hargreaves-Samani equation, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:\n\\[\nET_0 = 0.0023 \\cdot (T_{mean} + 17.8) \\cdot \\sqrt{T_{max} - T_{min}} \\cdot R_a\n\\]\nThe final Crop Evapotranspiration (\\(ET_c\\)) was derived as:\n\\[\nET_c = ET_0 \\times K_c \\times K_s - P_{eff}\n\\]\nWhere:\n\n\\(K_c\\) (Crop Coefficient): Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).\n\\(K_s\\) (Soil Stress Coefficient): Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).\n\\(P_{eff}\\) (Effective Rainfall): Accounted for as 80% of daily precipitation.\n\n\n\n\n\n\n\nMethodological Note\n\n\n\nWhile the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates (\\(r &gt; 0.95\\)) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable."
-  },
-  {
-    "objectID": "index.html#target-variable-formulation-1",
-    "href": "index.html#target-variable-formulation-1",
-    "title": "```markdown",
-    "section": "9.1 Target Variable Formulation",
-    "text": "9.1 Target Variable Formulation\nTo ensure agronomic validity, the target variable (\\(y = \\text{Water Need}\\)) was synthesized based on the FAO-56 Penman-Monteith framework, the global standard for irrigation scheduling [1].\nDue to the practical constraints of sensor availability (specifically solar radiation), Reference Evapotranspiration (\\(ET_0\\)) was estimated using the Hargreaves-Samani equation, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:\n\\[\nET_0 = 0.0023 \\cdot (T_{mean} + 17.8) \\cdot \\sqrt{T_{max} - T_{min}} \\cdot R_a\n\\]\nThe final Crop Evapotranspiration (\\(ET_c\\)) was derived as:\n\\[\nET_c = ET_0 \\times K_c \\times K_s - P_{eff}\n\\]\nWhere:\n\n\\(K_c\\) (Crop Coefficient): Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).\n\\(K_s\\) (Soil Stress Coefficient): Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).\n\\(P_{eff}\\) (Effective Rainfall): Accounted for as 80% of daily precipitation.\n\n\n\n\n\n\n\nMethodological Note\n\n\n\nWhile the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates (\\(r &gt; 0.95\\)) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable."
-  },
-  {
     "objectID": "index.html#limitations-future-work",
     "href": "index.html#limitations-future-work",
     "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
     "section": "4.3 Limitations & Future Work",
-    "text": "4.3 Limitations & Future Work\nLimitations: - Dataset is synthetic based on FAO-56 logic, not raw field sensor data. - Absence of seasonal time-series components in the regression model.\nFuture Directions: - Incorporate real ET₀ meteorological data from station APIs. - Deploy real-time dashboard using Marimo or Streamlit. - Integrate IoT soil moisture measurements for closed-loop feedback."
+    "text": "4.3 Limitations & Future Work\nLimitations:\n\nDataset is synthetic based on FAO-56 logic, not raw field sensor data.\nAbsence of seasonal time-series components in the regression model.\n\nFuture Directions:\n\nIncorporate real ET₀ meteorological data from station APIs.\nDeploy real-time dashboard using Marimo or Streamlit.\nIntegrate IoT soil moisture measurements for closed-loop feedback."
   },
   {
-    "objectID": "index.html#limitations-future-work-1",
-    "href": "index.html#limitations-future-work-1",
-    "title": "```markdown",
-    "section": "10.3 Limitations & Future Work",
-    "text": "10.3 Limitations & Future Work\nLimitations: - Dataset is synthetic based on FAO-56 logic, not raw field sensor data. - Absence of seasonal time-series components in the regression model.\nFuture Directions: - Incorporate real ET₀ meteorological data from station APIs. - Deploy real-time dashboard using Marimo or Streamlit. - Integrate IoT soil moisture measurements for closed-loop feedback."
+    "objectID": "index.html#contact-partners",
+    "href": "index.html#contact-partners",
+    "title": "Modeling Citrus Irrigation Requirements Using Environmental Drivers",
+    "section": "Contact & Partners",
+    "text": "Contact & Partners\n\n\n\n\n\n\n\nDanki Studio\nPartner Org\n\n\n\n\n\n\n\n\n\nAbout Danki Studio: We specialize in building scalable data architectures and actionable machine learning systems for agriculture and industry. Visit our website."
+  },
+  {
+    "objectID": "app.html",
+    "href": "app.html",
+    "title": "Citrus Irrigation Calculator",
+    "section": "",
+    "text": "Citrus Decision Support Tool v1.0\n    Citrus IrrigationCalculator\n    Enter your orchard parameters to receive ML-optimised irrigation volumes alongside the FAO-56 baseline — in litres, cubic metres, cost and CO².\n  \n\n  \n    \n    \n      Orchard Parameters\n      \n        Quick fill:\n        Heat Wave\n        Mild Season\n        Peak Fruiting\n        After Rain\n      \n      \n        Trees / hectare\n        Tree age (years)\n      \n      \n        Growth stage\n          VegetativeFloweringFruiting\n        \n        Soil type\n          SandyLoamClay\n        \n      \n      \n      Temperature (°C)\n        32°C\n      \n      Humidity (%)\n        45%\n      \n      Wind speed (km/h)\n        12 km/h\n      \n      Rainfall (mm/day)\n        0 mm\n      \n    \n\n    \n    \n      Output Configuration\n      Planning period\n        \n          Daily\n          Weekly\n          Monthly\n        \n      \n      \n        Water cost (€/m³)\n        Energy (kWh/m³)\n      \n      \n        CO² factor (kg/kWh)\n        Hectares\n      \n      \n      \n        Model logic\n        The ML estimate uses the XGBoost regression coefficients trained on 2,000 citrus observations, with age-scaled canopy area.\n        The FAO-56 baseline uses Classical Penman-Monteith ET&sub0; × Kc × Ks — the international irrigation standard.\n      \n      Calculate Irrigation\n    \n\n    \n    \n      Results — Weekly Estimate\n      \n      \n        \n          ML Model Prediction\n          —\n          L / tree / day\n          \n        \n        \n          FAO-56 Classical Baseline\n          —\n          L / tree / day\n          \n        \n      \n      \n        —ML L/week\n        —ML m³/week\n        —FAO m³/week\n        —Saved m³/week\n      \n      \n        —%\n        \n          Efficiency vs FAO baseline\n          \n        \n        \n      \n      \n        \n          💶\n          —Cost saved (€/week/ha)\n        \n        \n          🌿\n          —CO² saved (kg/week/ha)\n        \n      \n      \n        ↓ Download Simulation Report (PDF)\n      \n    \n  \n\n  \n    This tool uses an approximated ML model and classical FAO-56 Penman-Monteith formula. Not a substitute for field agronomic advice.\n    Citrus Water Supply Project · Nambona Adeline YANGUERE · Danki Studio"
+  },
+  {
+    "objectID": "CLAUDE.html",
+    "href": "CLAUDE.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "CLAUDE.html#marimo-fundamentals",
+    "href": "CLAUDE.html#marimo-fundamentals",
+    "title": "",
+    "section": "1.1 Marimo fundamentals",
+    "text": "1.1 Marimo fundamentals\nMarimo is a reactive notebook that differs from traditional notebooks in key ways:\n\nCells execute automatically when their dependencies change\nVariables cannot be redeclared across cells\nThe notebook forms a directed acyclic graph (DAG)\nThe last expression in a cell is automatically displayed\nUI elements are reactive and update the notebook automatically"
+  },
+  {
+    "objectID": "CLAUDE.html#code-requirements",
+    "href": "CLAUDE.html#code-requirements",
+    "title": "",
+    "section": "1.2 Code Requirements",
+    "text": "1.2 Code Requirements\n\nAll code must be complete and runnable\nFollow consistent coding style throughout\nInclude descriptive variable names and helpful comments\nImport all modules in the first cell, always including import marimo as mo\nNever redeclare variables across cells\nEnsure no cycles in notebook dependency graph\nThe last expression in a cell is automatically displayed, just like in Jupyter notebooks.\nDon’t include comments in markdown cells\nDon’t include comments in SQL cells\nNever define anything using global."
+  },
+  {
+    "objectID": "CLAUDE.html#reactivity",
+    "href": "CLAUDE.html#reactivity",
+    "title": "",
+    "section": "1.3 Reactivity",
+    "text": "1.3 Reactivity\nMarimo’s reactivity means:\n\nWhen a variable changes, all cells that use that variable automatically re-execute\nUI elements trigger updates when their values change without explicit callbacks\nUI element values are accessed through .value attribute\nYou cannot access a UI element’s value in the same cell where it’s defined\nCells prefixed with an underscore (e.g. _my_var) are local to the cell and cannot be accessed by other cells"
+  },
+  {
+    "objectID": "CLAUDE.html#best-practices",
+    "href": "CLAUDE.html#best-practices",
+    "title": "",
+    "section": "1.4 Best Practices",
+    "text": "1.4 Best Practices\n\n\nUse polars for data manipulation\nImplement proper data validation\nHandle missing values appropriately\nUse efficient data structures\nA variable in the last expression of a cell is automatically displayed as a table \n\n - For matplotlib: use plt.gca() as the last expression instead of plt.show() - For plotly: return the figure object directly - For altair: return the chart object directly. Add tooltips where appropriate. You can pass polars dataframes directly to altair. - Include proper labels, titles, and color schemes - Make visualizations interactive where appropriate \n\n\nAccess UI element values with .value attribute (e.g., slider.value)\nCreate UI elements in one cell and reference them in later cells\nCreate intuitive layouts with mo.hstack(), mo.vstack(), and mo.tabs()\nPrefer reactive updates over callbacks (marimo handles reactivity automatically)\nGroup related UI elements for better organization \n\n - When writing duckdb, prefer using marimo’s SQL cells, which start with df = mo.sql(f”““”““) for DuckDB, or df = mo.sql(f”““”““, engine=engine) for other SQL engines. - See the SQL with duckdb example for an example on how to do this - Don’t add comments in cells that use mo.sql()"
+  },
+  {
+    "objectID": "CLAUDE.html#troubleshooting",
+    "href": "CLAUDE.html#troubleshooting",
+    "title": "",
+    "section": "1.5 Troubleshooting",
+    "text": "1.5 Troubleshooting\nCommon issues and solutions:\n\nCircular dependencies: Reorganize code to remove cycles in the dependency graph\nUI element value access: Move access to a separate cell from definition\nVisualization not showing: Ensure the visualization object is the last expression\n\nAfter generating a notebook, run marimo check --fix to catch and automatically resolve common formatting issues, and detect common pitfalls."
+  },
+  {
+    "objectID": "CLAUDE.html#available-ui-elements",
+    "href": "CLAUDE.html#available-ui-elements",
+    "title": "",
+    "section": "1.6 Available UI elements",
+    "text": "1.6 Available UI elements\n\nmo.ui.altair_chart(altair_chart)\nmo.ui.button(value=None, kind='primary')\nmo.ui.run_button(label=None, tooltip=None, kind='primary')\nmo.ui.checkbox(label='', value=False)\nmo.ui.date(value=None, label=None, full_width=False)\nmo.ui.dropdown(options, value=None, label=None, full_width=False)\nmo.ui.file(label='', multiple=False, full_width=False)\nmo.ui.number(value=None, label=None, full_width=False)\nmo.ui.radio(options, value=None, label=None, full_width=False)\nmo.ui.refresh(options: List[str], default_interval: str)\nmo.ui.slider(start, stop, value=None, label=None, full_width=False, step=None)\nmo.ui.range_slider(start, stop, value=None, label=None, full_width=False, step=None)\nmo.ui.table(data, columns=None, on_select=None, sortable=True, filterable=True)\nmo.ui.text(value='', label=None, full_width=False)\nmo.ui.text_area(value='', label=None, full_width=False)\nmo.ui.data_explorer(df)\nmo.ui.dataframe(df)\nmo.ui.plotly(plotly_figure)\nmo.ui.tabs(elements: dict[str, mo.ui.Element])\nmo.ui.array(elements: list[mo.ui.Element])\nmo.ui.form(element: mo.ui.Element, label='', bordered=True)"
+  },
+  {
+    "objectID": "CLAUDE.html#layout-and-utility-functions",
+    "href": "CLAUDE.html#layout-and-utility-functions",
+    "title": "",
+    "section": "1.7 Layout and utility functions",
+    "text": "1.7 Layout and utility functions\n\nmo.md(text) - display markdown\nmo.stop(predicate, output=None) - stop execution conditionally\nmo.output.append(value) - append to the output when it is not the last expression\nmo.output.replace(value) - replace the output when it is not the last expression\nmo.Html(html) - display HTML\nmo.image(image) - display an image\nmo.hstack(elements) - stack elements horizontally\nmo.vstack(elements) - stack elements vertically\nmo.tabs(elements) - create a tabbed interface"
+  },
+  {
+    "objectID": "CLAUDE.html#examples",
+    "href": "CLAUDE.html#examples",
+    "title": "",
+    "section": "1.8 Examples",
+    "text": "1.8 Examples\n\n@app.cell\ndef _():\n    mo.md(\"\"\"\n    # Hello world\n    This is a _markdown_ **cell**.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import altair as alt\n    import polars as pl\n    import numpy as np\n    return\n\n@app.cell\ndef _():\n    n_points = mo.ui.slider(10, 100, value=50, label=\"Number of points\")\n    n_points\n    return\n\n@app.cell\ndef _():\n    x = np.random.rand(n_points.value)\n    y = np.random.rand(n_points.value)\n\n    df = pl.DataFrame({\"x\": x, \"y\": y})\n\n    chart = alt.Chart(df).mark_circle(opacity=0.7).encode(\n        x=alt.X('x', title='X axis'),\n        y=alt.Y('y', title='Y axis')\n    ).properties(\n        title=f\"Scatter plot with {n_points.value} points\",\n        width=400,\n        height=300\n    )\n\n    chart\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    from vega_datasets import data\n    return\n\n@app.cell\ndef _():\n    cars_df = pl.DataFrame(data.cars())\n    mo.ui.data_explorer(cars_df)\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    import altair as alt\n    return\n\n@app.cell\ndef _():\n    iris = pl.read_csv(\"hf://datasets/scikit-learn/iris/Iris.csv\")\n    return\n\n@app.cell\ndef _():\n    species_selector = mo.ui.dropdown(\n        options=[\"All\"] + iris[\"Species\"].unique().to_list(),\n        value=\"All\",\n        label=\"Species\",\n    )\n    x_feature = mo.ui.dropdown(\n        options=iris.select(pl.col(pl.Float64, pl.Int64)).columns,\n        value=\"SepalLengthCm\",\n        label=\"X Feature\",\n    )\n    y_feature = mo.ui.dropdown(\n        options=iris.select(pl.col(pl.Float64, pl.Int64)).columns,\n        value=\"SepalWidthCm\",\n        label=\"Y Feature\",\n    )\n    mo.hstack([species_selector, x_feature, y_feature])\n    return\n\n@app.cell\ndef _():\n    filtered_data = iris if species_selector.value == \"All\" else iris.filter(pl.col(\"Species\") == species_selector.value)\n\n    chart = alt.Chart(filtered_data).mark_circle().encode(\n        x=alt.X(x_feature.value, title=x_feature.value),\n        y=alt.Y(y_feature.value, title=y_feature.value),\n        color='Species'\n    ).properties(\n        title=f\"{y_feature.value} vs {x_feature.value}\",\n        width=500,\n        height=400\n    )\n\n    chart\n    return\n\n\n\n\n@app.cell\ndef _():\n    mo.stop(not data.value, mo.md(\"No data to display\"))\n\n    if mode.value == \"scatter\":\n        mo.output.replace(render_scatter(data.value))\n    else:\n        mo.output.replace(render_bar_chart(data.value))\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import altair as alt\n    import polars as pl\n    return\n\n@app.cell\ndef _():\n    # Load dataset\n    weather = pl.read_csv(\"&lt;https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/weather.csv&gt;\")\n    weather_dates = weather.with_columns(\n        pl.col(\"date\").str.strptime(pl.Date, format=\"%Y-%m-%d\")\n    )\n    _chart = (\n        alt.Chart(weather_dates)\n        .mark_point()\n        .encode(\n            x=\"date:T\",\n            y=\"temp_max\",\n            color=\"location\",\n        )\n    )\n    return\n\n@app.cell\ndef _():\n    chart = mo.ui.altair_chart(_chart)\nchart\n    return\n\n@app.cell\ndef _():\n    # Display the selection\n    chart.value\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    return\n\n@app.cell\ndef _():\n    first_button = mo.ui.run_button(label=\"Option 1\")\n    second_button = mo.ui.run_button(label=\"Option 2\")\n    [first_button, second_button]\n    return\n\n@app.cell\ndef _():\n    if first_button.value:\n        print(\"You chose option 1!\")\n    elif second_button.value:\n        print(\"You chose option 2!\")\n    else:\n        print(\"Click a button!\")\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    return\n\n@app.cell\ndef _():\n    weather = pl.read_csv('&lt;https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/weather.csv&gt;')\n    return\n\n@app.cell\ndef _():\n    seattle_weather_df = mo.sql(\n        f\"\"\"\n        SELECT * FROM weather WHERE location = 'Seattle';\n        \"\"\"\n    )\n    return"
   }
 ]

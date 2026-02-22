@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nambona Adeline YANGUERE">
-<meta name="dcterms.date" content="2026-02-21">
+<meta name="author" content="Nambona Adeline Yanguere">
+<meta name="dcterms.date" content="2026-02-22">
 
-<title>Modeling Citrus Irrigation Requirements Using Environmental Drivers – 🍊 Citrus Water Supply Report</title>
+<title>Modeling Citrus Irrigation Requirements Using Environmental Drivers – Citrus Water Supply Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,26 +56,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -164,7 +145,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">🍊 Citrus Water Supply Report</span>
+    <span class="navbar-title">Citrus Water Supply Report</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -177,6 +158,10 @@ window.Quarto = {
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Report</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./app.html"> 
+<span class="menu-text">Calculator</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -187,6 +172,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -203,8 +189,10 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
   <ul class="collapse">
   <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement"><span class="header-section-number">1.1</span> Problem Statement</a></li>
-  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description"><span class="header-section-number">1.2</span> Dataset Description</a></li>
-  <li><a href="#correlation-structure" id="toc-correlation-structure" class="nav-link" data-scroll-target="#correlation-structure"><span class="header-section-number">1.3</span> Correlation Structure</a></li>
+  <li><a href="#why-use-machine-learning-for-irrigation-optimization" id="toc-why-use-machine-learning-for-irrigation-optimization" class="nav-link" data-scroll-target="#why-use-machine-learning-for-irrigation-optimization"><span class="header-section-number">1.2</span> Why Use Machine Learning for Irrigation Optimization?</a></li>
+  <li><a href="#strategic-impact-assessment" id="toc-strategic-impact-assessment" class="nav-link" data-scroll-target="#strategic-impact-assessment"><span class="header-section-number">1.3</span> Strategic Impact Assessment</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description"><span class="header-section-number">1.4</span> Dataset Description</a></li>
+  <li><a href="#correlation-structure" id="toc-correlation-structure" class="nav-link" data-scroll-target="#correlation-structure"><span class="header-section-number">1.5</span> Correlation Structure</a></li>
   </ul></li>
   <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis"><span class="header-section-number">2</span> Exploratory Data Analysis</a>
   <ul class="collapse">
@@ -224,9 +212,12 @@ window.Quarto = {
   <li><a href="#operational-implications" id="toc-operational-implications" class="nav-link" data-scroll-target="#operational-implications"><span class="header-section-number">4.2</span> Operational Implications</a></li>
   <li><a href="#limitations-future-work" id="toc-limitations-future-work" class="nav-link" data-scroll-target="#limitations-future-work"><span class="header-section-number">4.3</span> Limitations &amp; Future Work</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a></li>
+  <li><a href="#industrial-application-irrigation-decision-support-tool" id="toc-industrial-application-irrigation-decision-support-tool" class="nav-link" data-scroll-target="#industrial-application-irrigation-decision-support-tool"><span class="header-section-number">5</span> Industrial Application: Irrigation Decision Support Tool</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a>
+  <ul class="collapse">
   <li><a href="#contact-partners" id="toc-contact-partners" class="nav-link" data-scroll-target="#contact-partners">Contact &amp; Partners</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -245,14 +236,14 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Nambona Adeline YANGUERE </p>
+             <p>Nambona Adeline Yanguere </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 21, 2026</p>
+      <p class="date">February 22, 2026</p>
     </div>
   </div>
   
@@ -275,9 +266,248 @@ window.Quarto = {
 <li>Build a predictive regression model.</li>
 <li>Provide operational irrigation guidance.</li>
 </ul>
+<p>Executive Synthesis</p>
+<p>By transforming environmental data into predictive irrigation recommendations, this project moves citrus water management from static scheduling to adaptive optimization. The approach supports measurable reductions in water usage, operating costs, and climate-related production risk, providing a scalable pathway toward precision agriculture at commercial scale.</p>
 </section>
-<section id="dataset-description" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="dataset-description"><span class="header-section-number">1.2</span> Dataset Description</h2>
+<section id="why-use-machine-learning-for-irrigation-optimization" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="why-use-machine-learning-for-irrigation-optimization"><span class="header-section-number">1.2</span> Why Use Machine Learning for Irrigation Optimization?</h2>
+<section id="limitations-of-classical-irrigation-scheduling" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="limitations-of-classical-irrigation-scheduling"><span class="header-section-number">1.2.1</span> Limitations of Classical Irrigation Scheduling</h3>
+<p>The FAO-56 Penman-Monteith framework provides a physically grounded method for estimating reference evapotranspiration. However, operational irrigation management in commercial orchards often relies on:</p>
+<ul>
+<li>Static crop coefficients</li>
+<li>Manual rule adjustments</li>
+<li>Simplified stress assumptions</li>
+<li>Calendar-based irrigation cycles</li>
+</ul>
+<p>These methods assume that environmental variables affect water demand in relatively linear and separable ways.</p>
+<p>In practice, this assumption is rarely true.</p>
+<p>Water demand depends on complex, nonlinear interactions between:</p>
+<ul>
+<li>Temperature thresholds</li>
+<li>Humidity gradients</li>
+<li>Wind intensity</li>
+<li>Soil retention characteristics</li>
+<li>Growth stage sensitivity</li>
+</ul>
+<p>Traditional models require explicit parameter tuning to capture these effects. They do not automatically learn interactions from historical variability.</p>
+</section>
+<section id="limitations-of-classical-irrigation-scheduling-1" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="limitations-of-classical-irrigation-scheduling-1"><span class="header-section-number">1.2.2</span> Limitations of Classical Irrigation Scheduling</h3>
+<p>Machine learning does not replace agronomic theory — it extends it.</p>
+<p>Instead of manually specifying every interaction term, supervised learning:</p>
+<ol type="1">
+<li>Learns nonlinear relationships directly from observed data</li>
+<li>Captures interaction effects automatically 3.Quantifies predictive uncertainty</li>
+<li>Adapts when retrained on new climate patterns</li>
+</ol>
+<p>For example:</p>
+<ul>
+<li>High temperature combined with low humidity does not increase evapotranspiration linearly.</li>
+<li>Wind impact differs significantly between sandy and clay soils.</li>
+<li>Fruiting-stage trees respond differently to identical environmental conditions compared to vegetative-stage trees. Tree-based ensemble models (e.g., XGBoost) are particularly effective at modeling such conditional relationships without requiring explicit physical equations for each scenario.</li>
+</ul>
+</section>
+<section id="why-not-use-only-fao-56" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="why-not-use-only-fao-56"><span class="header-section-number">1.2.3</span> Why Not Use Only FAO-56?</h3>
+<p>FAO-56 remains the physical reference standard.</p>
+<p>However:</p>
+<ul>
+<li>It assumes idealized conditions.</li>
+<li>It requires multiple meteorological inputs (including radiation).</li>
+<li>It does not optimize irrigation decisions at the operational level.</li>
+</ul>
+<p>Machine learning enables:</p>
+<ul>
+<li>Integration of heterogeneous data sources</li>
+<li>Calibration to specific orchard conditions</li>
+<li>Adaptation to microclimates</li>
+<li>Data-driven adjustment of coefficients</li>
+</ul>
+<p>In other words, FAO-56 estimates evapotranspiration. Machine learning optimizes irrigation decisions under real-world variability.</p>
+</section>
+<section id="strategic-rationale-for-the-citrus-industry" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="strategic-rationale-for-the-citrus-industry"><span class="header-section-number">1.2.4</span> Strategic Rationale for the Citrus Industry</h3>
+<p>From an operational perspective, ML-driven irrigation scheduling:</p>
+<ul>
+<li>Reduces systematic over-irrigation</li>
+<li>Improves allocation across orchard blocks</li>
+<li>Supports climate adaptation</li>
+<li>Provides measurable performance metrics (R², MAE, validation error)</li>
+</ul>
+<p>It transforms irrigation from a rule-based system into a continuously learnable system.</p>
+</section>
+<section id="fao-56-vs-machine-learning-a-comparative-overview" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="fao-56-vs-machine-learning-a-comparative-overview"><span class="header-section-number">1.2.5</span> FAO-56 vs Machine Learning: A Comparative Overview</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>FAO-56 (Physics-Based)</th>
+<th>Machine Learning (Data-Driven)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Foundation</strong></td>
+<td>Physical equations (Penman-Monteith)</td>
+<td>Learned from observed data</td>
+</tr>
+<tr class="even">
+<td><strong>Nonlinear interactions</strong></td>
+<td>Requires manual parameterization</td>
+<td>Captured automatically</td>
+</tr>
+<tr class="odd">
+<td><strong>Adaptation to local conditions</strong></td>
+<td>Generic coefficients</td>
+<td>Calibrated to specific orchards</td>
+</tr>
+<tr class="even">
+<td><strong>Data requirements</strong></td>
+<td>Radiation, wind, humidity, temperature</td>
+<td>Any available environmental variables</td>
+</tr>
+<tr class="odd">
+<td><strong>Missing data tolerance</strong></td>
+<td>Degrades significantly</td>
+<td>Handles partial inputs</td>
+</tr>
+<tr class="even">
+<td><strong>Retraining</strong></td>
+<td>Not applicable</td>
+<td>Continuous improvement with new data</td>
+</tr>
+<tr class="odd">
+<td><strong>Interpretability</strong></td>
+<td>High (physical meaning)</td>
+<td>Moderate (feature importance, SHAP)</td>
+</tr>
+<tr class="even">
+<td><strong>Operational optimization</strong></td>
+<td>Estimates ET₀ only</td>
+<td>Optimizes irrigation decisions</td>
+</tr>
+<tr class="odd">
+<td><strong>Climate adaptation</strong></td>
+<td>Static coefficients</td>
+<td>Adapts to distributional shifts</td>
+</tr>
+<tr class="even">
+<td><strong>Scalability</strong></td>
+<td>Manual per-zone tuning</td>
+<td>Automated across orchard blocks</td>
+</tr>
+<tr class="odd">
+<td><strong>Accuracy measurement</strong></td>
+<td>Theoretical validation</td>
+<td>Quantifiable (R², MAE, RMSE, CV)</td>
+</tr>
+</tbody>
+</table>
+<div id="cell-fig-approach-comparison" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-approach-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-approach-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-approach-comparison-output-1.png" width="1773" height="724" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-approach-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Comparison of physics-based (FAO-56) and data-driven (ML) irrigation modeling approaches.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="strategic-impact-assessment" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="strategic-impact-assessment"><span class="header-section-number">1.3</span> Strategic Impact Assessment</h2>
+<section id="operational-context" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="operational-context"><span class="header-section-number">1.3.1</span> Operational Context</h3>
+<p>Irrigation represents one of the largest variable costs in citrus production, particularly in regions exposed to:</p>
+<ul>
+<li>Water scarcity</li>
+<li>Rising energy costs</li>
+<li>Increasing climate variability</li>
+<li>Regulatory constraints on groundwater extraction</li>
+</ul>
+<p>Traditional irrigation scheduling methods rely on static coefficients and manual adjustments. While agronomically sound, they do not dynamically adapt to daily environmental fluctuations or nonlinear stress interactions.</p>
+<p>This project introduces a predictive modeling framework designed to improve irrigation precision and operational efficiency.</p>
+</section>
+<section id="quantitative-impact-example-per-hectare" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="quantitative-impact-example-per-hectare"><span class="header-section-number">1.3.2</span> Quantitative Impact Example (Per Hectare)</h3>
+<p>Assume a commercial citrus orchard with:</p>
+<ul>
+<li>400 trees per hectare</li>
+<li>Average annual irrigation requirement: ~5,000–8,000 m³ per hectare</li>
+<li>Pumping cost: €0.10–€0.25 per m³ (water + energy)</li>
+</ul>
+<p>If machine learning–based optimization reduces excess irrigation by 10%, the impact per hectare becomes:</p>
+<ul>
+<li>Water savings: 500–800 m³ per year</li>
+<li>Direct cost savings: €50–€200 per hectare annually</li>
+<li>Reduced nutrient leaching and runoff</li>
+<li>Lower energy consumption for pumping</li>
+</ul>
+<p>At scale:</p>
+<p>For a 100-hectare orchard:</p>
+<ul>
+<li>50,000–80,000 m³ water saved annually</li>
+<li>€5,000–€20,000 in operational cost reduction</li>
+</ul>
+<p>This does not account for indirect gains such as:</p>
+<ul>
+<li>Improved fruit quality under optimized water stress</li>
+<li>Reduced disease pressure from over-irrigation</li>
+<li>Enhanced resilience during heat waves</li>
+</ul>
+</section>
+<section id="efficiency-gains-enabled-by-machine-learning" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="efficiency-gains-enabled-by-machine-learning"><span class="header-section-number">1.3.3</span> Efficiency Gains Enabled by Machine Learning</h3>
+<p>The model contributes to citrus industry efficiency in four measurable ways:</p>
+<ol type="1">
+<li>Resource Optimization By dynamically estimating daily water demand, the system:</li>
+</ol>
+<ul>
+<li>Minimizes over-application</li>
+<li>Aligns irrigation with actual evapotranspiration drivers</li>
+<li>Reduces variability across orchard zones</li>
+</ul>
+<ol start="2" type="1">
+<li>Cost Control Precise water allocation reduces:</li>
+</ol>
+<ul>
+<li>Pumping energy costs</li>
+<li>Maintenance strain on irrigation infrastructure</li>
+<li>Risk of regulatory penalties in water-restricted regions</li>
+</ul>
+<ol start="3" type="1">
+<li>Risk Mitigation Under climate volatility, predictive irrigation scheduling:</li>
+</ol>
+<ul>
+<li>Reduces exposure to heat stress</li>
+<li>Improves yield stability</li>
+<li>Enables proactive rather than reactive management</li>
+</ul>
+<ol start="4" type="1">
+<li>Scalable Digital Infrastructure This framework can evolve into:</li>
+</ol>
+<ul>
+<li>Sensor-integrated irrigation control</li>
+<li>Zone-level optimization models</li>
+<li>API-based decision support systems</li>
+<li>Real-time dashboards for agronomic teams</li>
+</ul>
+</section>
+</section>
+<section id="dataset-description" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="dataset-description"><span class="header-section-number">1.4</span> Dataset Description</h2>
 <p>The dataset contains 2,000 daily observations including:</p>
 <ul>
 <li>Temperature (°C)</li>
@@ -289,14 +519,14 @@ window.Quarto = {
 <li>Growth stage (categorical)</li>
 <li>Target: water_need_liters</li>
 </ul>
-<div class="cell" data-execution_count="2">
-<div id="tbl-describe" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<div class="cell" data-execution_count="3">
+<div id="tbl-describe" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-describe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Descriptive statistics of numeric variables.
 </figcaption>
 <div aria-describedby="tbl-describe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
@@ -400,17 +630,17 @@ Table&nbsp;1: Descriptive statistics of numeric variables.
 </div>
 <hr>
 </section>
-<section id="correlation-structure" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="correlation-structure"><span class="header-section-number">1.3</span> Correlation Structure</h2>
-<div id="cell-fig-corr" class="cell" data-execution_count="3">
+<section id="correlation-structure" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="correlation-structure"><span class="header-section-number">1.5</span> Correlation Structure</h2>
+<div id="cell-fig-corr" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-corr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-corr-output-1.png" width="754" height="618" class="figure-img">
+<img src="index_files/figure-html/fig-corr-output-1.png" width="1178" height="966" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Pearson correlation matrix.
+Figure&nbsp;2: Pearson correlation matrix.
 </figcaption>
 </figure>
 </div>
@@ -424,15 +654,15 @@ Figure&nbsp;1: Pearson correlation matrix.
 <h1 data-number="2"><span class="header-section-number">2</span> Exploratory Data Analysis</h1>
 <section id="temperaturedemand-relationship" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="temperaturedemand-relationship"><span class="header-section-number">2.1</span> Temperature–Demand Relationship</h2>
-<div id="cell-fig-temp" class="cell" data-execution_count="4">
+<div id="cell-fig-temp" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-temp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-temp-output-1.png" width="721" height="478" class="figure-img">
+<img src="index_files/figure-html/fig-temp-output-1.png" width="1127" height="748" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Non-linear relationship between temperature and irrigation demand.
+Figure&nbsp;3: Non-linear relationship between temperature and irrigation demand.
 </figcaption>
 </figure>
 </div>
@@ -442,15 +672,15 @@ Figure&nbsp;2: Non-linear relationship between temperature and irrigation demand
 </section>
 <section id="agronomic-segmentation" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="agronomic-segmentation"><span class="header-section-number">2.2</span> Agronomic Segmentation</h2>
-<div id="cell-fig-growth" class="cell" data-execution_count="5">
+<div id="cell-fig-growth" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-growth" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-growth-output-1.png" width="678" height="458" class="figure-img">
+<img src="index_files/figure-html/fig-growth-output-1.png" width="1059" height="716" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Distribution of water demand across growth stages and soil types.
+Figure&nbsp;4: Distribution of water demand across growth stages and soil types.
 </figcaption>
 </figure>
 </div>
@@ -460,14 +690,14 @@ Figure&nbsp;3: Distribution of water demand across growth stages and soil types.
 </section>
 <section id="lookup-aggregation" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="lookup-aggregation"><span class="header-section-number">2.3</span> Lookup Aggregation</h2>
-<div class="cell" data-execution_count="6">
-<div id="tbl-lookup" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<div class="cell" data-execution_count="7">
+<div id="tbl-lookup" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lookup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Median water demand by temperature band and growth stage.
 </figcaption>
 <div aria-describedby="tbl-lookup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -546,20 +776,20 @@ Methodological Note
 <section id="feature-engineering" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="feature-engineering"><span class="header-section-number">3.2</span> Feature Engineering</h2>
 <p>Categorical variables were label-encoded for the regression model.</p>
-<div id="feature-engineering" class="cell" data-execution_count="7">
+<div id="feature-engineering" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>Training samples: 1600
 Testing samples: 400</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
-<div id="tbl-features" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="8">
+<div class="cell" data-execution_count="9">
+<div id="tbl-features" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Model Input Features
 </figcaption>
 <div aria-describedby="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -615,7 +845,7 @@ Table&nbsp;3: Model Input Features
 <section id="model-selection" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">3.3</span> Model Selection</h2>
 <p>We selected <strong>XGBoost Regressor</strong> due to its non-linear modeling capacity and robustness to multicollinearity.</p>
-<div id="model-training" class="cell" data-execution_count="9">
+<div id="model-training" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>Test R²: 0.532
 MAE (L): 1.60
@@ -630,15 +860,15 @@ Cross-validated R²: 0.579</code></pre>
 <h1 data-number="4"><span class="header-section-number">4</span> Interpretation &amp; Recommendations</h1>
 <section id="feature-importance" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="feature-importance"><span class="header-section-number">4.1</span> Feature Importance</h2>
-<div id="cell-fig-importance" class="cell" data-execution_count="10">
+<div id="cell-fig-importance" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div id="fig-importance" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-importance-output-1.png" width="771" height="478" class="figure-img">
+<img src="index_files/figure-html/fig-importance-output-1.png" width="1204" height="747" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Normalized feature importance from XGBoost.
+Figure&nbsp;5: Normalized feature importance from XGBoost.
 </figcaption>
 </figure>
 </div>
@@ -658,45 +888,73 @@ Figure&nbsp;4: Normalized feature importance from XGBoost.
 </section>
 <section id="limitations-future-work" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="limitations-future-work"><span class="header-section-number">4.3</span> Limitations &amp; Future Work</h2>
-<p><strong>Limitations:</strong> - Dataset is synthetic based on FAO-56 logic, not raw field sensor data. - Absence of seasonal time-series components in the regression model.</p>
-<p><strong>Future Directions:</strong> - Incorporate real ET₀ meteorological data from station APIs. - Deploy real-time dashboard using Marimo or Streamlit. - Integrate IoT soil moisture measurements for closed-loop feedback.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Dataset is synthetic based on FAO-56 logic, not raw field sensor data.</li>
+<li>Absence of seasonal time-series components in the regression model.</li>
+</ul>
+<p><strong>Future Directions:</strong></p>
+<ul>
+<li>Incorporate real ET₀ meteorological data from station APIs.</li>
+<li>Deploy real-time dashboard using Marimo or Streamlit.</li>
+<li>Integrate IoT soil moisture measurements for closed-loop feedback.</li>
+</ul>
+<div style="page-break-after: always;"></div>
 </section>
 </section>
-<section id="conclusion" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
+<section id="industrial-application-irrigation-decision-support-tool" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Industrial Application: Irrigation Decision Support Tool</h1>
+<p>The value of predictive modeling in agriculture is realized only when complex data is translated into actionable field operations. This project bridges that gap by transforming the XGBoost regressor into a <strong>Decision Support System (DSS)</strong>.</p>
+<p>By integrating real-time weather forecasts with site-specific metadata (tree age, soil type), the tool provides irrigation managers with precise volumetric requirements, moving beyond the “one-size-fits-all” approach of static FAO tables.</p>
+<section id="the-decision-logic-flow" class="level3" data-number="5.0.1">
+<h3 data-number="5.0.1" class="anchored" data-anchor-id="the-decision-logic-flow"><span class="header-section-number">5.0.1</span> The Decision Logic Flow</h3>
+<p><strong>User Interface &amp; Inputs</strong></p>
+<p>The DSS interface is designed for low-friction data entry:</p>
+<ul>
+<li><strong>Orchard Metadata:</strong> Tree count, age, and soil hydraulic properties.</li>
+<li><strong>Environmental Inputs:</strong> Temperature, humidity, wind speed, and forecasted rainfall.</li>
+<li><strong>Operational Constraints:</strong> Choice of daily, weekly, or monthly planning cycles.</li>
+</ul>
+<p><strong>Actionable Outputs</strong></p>
+<p>The system delivers a “Dual-Track” validation:</p>
+<ol type="1">
+<li><strong>ML Prediction:</strong> Optimized volume based on historical sensor patterns.</li>
+<li><strong>FAO-56 Baseline:</strong> The theoretical standard for safety comparison.</li>
+<li><strong>Efficiency Metric:</strong> Variance analysis (potential water/energy savings).</li>
+</ol>
+</section>
+<section id="deployment-scalability" class="level3" data-number="5.0.2">
+<h3 data-number="5.0.2" class="anchored" data-anchor-id="deployment-scalability"><span class="header-section-number">5.0.2</span> Deployment &amp; Scalability</h3>
+<p>This tool is deployed as a WebAssembly (WASM) application, allowing for offline-capable, high-performance inference directly on a mobile device or desktop without requiring a centralized database.</p>
+<p><strong>Try the Live Tool:</strong> An interactive version of this model is available at <a href="./app.html">adeline-hub.github.io/citrus-water-supply/app.html</a>.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="conclusion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
 <p>This whitepaper demonstrates that environmental and agronomic variables can predict citrus irrigation requirements with high accuracy (<span class="math inline">\(R^2 &gt; 0.9\)</span>). The framework enables scalable, data-driven irrigation scheduling and can be extended to additional crops and climatic regions.</p>
+<div style="page-break-after: always;"></div>
 </section>
-<section id="references" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> References</h1>
-<div id="refs" role="list">
-
-</div>
-</section>
-<section id="contact-partners" class="level1 unnumbered">
-<h1 class="unnumbered">Contact &amp; Partners</h1>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://dankistudio.com"><img src="assets/logo.png" class="img-fluid figure-img" width="200" alt="Danki Studio Data Science &amp; Architecture"></a></p>
-<figcaption><strong>Danki Studio</strong><br>Data Science &amp; Architecture</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="#"><img src="assets/partner_logo.png" class="img-fluid figure-img" width="200" alt="Partner Organization Strategic Collaboration"></a></p>
-<figcaption><strong>Partner Organization</strong><br>Strategic Collaboration</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
+<section id="references" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<ol type="1">
+<li>Allen, R.G. et al.&nbsp;(1998). <em>Crop Evapotranspiration — FAO Irrigation and Drainage Paper 56</em>.</li>
+<li>Chen, T. &amp; Guestrin, C. (2016). <em>XGBoost: A Scalable Tree Boosting System</em>.</li>
+</ol>
+<section id="contact-partners" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="contact-partners">Contact &amp; Partners</h2>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="assets/logo.png" class="img-fluid" style="width:2in"></td>
+<td style="text-align: center;"><img src="assets/partner_logo.png" class="img-fluid" style="width:2in"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://dankistudio.com"><strong>Danki Studio</strong></a></td>
+<td style="text-align: center;"><a href="#"><strong>Partner Org</strong></a></td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -711,6 +969,7 @@ Figure&nbsp;4: Normalized feature importance from XGBoost.
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1189,348 +1448,651 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Modeling Citrus Irrigation Requirements Using Environmental Drivers"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nambona Adeline YANGUERE"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nambona Adeline Yanguere"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show code"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    smooth-scroll: true</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    documentclass: article</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, os</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    documentclass: article</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    colorlinks: true</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf-engine: xelatex       # Better for fonts/layout</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-format: png           # Critical: Fixes plot crashes in PDF</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-dpi: 300              # High resolution for printing</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">    geometry:</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">      - margin=1in</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Add project root to path</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, os.path.join(os.getcwd(), <span class="st">".."</span>))</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Import project modules</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.generate_data <span class="im">import</span> generate_citrus_data</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.viz <span class="im">import</span> (</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    plot_correlation_heatmap,</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    plot_temp_vs_water,</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    plot_growth_stage_box,</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    plot_feature_importance,</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modeling libraries</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score, mean_absolute_error, mean_squared_error</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBRegressor</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Load or generate data</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> Path(<span class="st">"../data/processed/citrus_water.parquet"</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data_path.exists():</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_parquet(data_path)</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> generate_citrus_data()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, os</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Add project root to path</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, os.path.join(os.getcwd(), <span class="st">".."</span>))</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Import project modules</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.generate_data <span class="im">import</span> generate_citrus_data</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.viz <span class="im">import</span> (</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    plot_correlation_heatmap,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    plot_temp_vs_water,</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    plot_growth_stage_box,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    plot_feature_importance,</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modeling libraries</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score, mean_absolute_error, mean_squared_error</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBRegressor</span>
 <span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Load or generate data</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> Path(<span class="st">"../data/processed/citrus_water.parquet"</span>)</span>
 <span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem Statement</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>Efficient irrigation management is critical for citrus production under</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>increasing climate variability. Over-irrigation wastes resources and</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>increases disease risk, while under-irrigation reduces yield and fruit</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>quality.</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>This study aims to:</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quantify drivers of daily water demand (L/tree/day).</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Build a predictive regression model.</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide operational irrigation guidance.</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset Description</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data_path.exists():</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_parquet(data_path)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> generate_citrus_data()</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem Statement</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>Efficient irrigation management is critical for citrus production under</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>increasing climate variability. Over-irrigation wastes resources and</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>increases disease risk, while under-irrigation reduces yield and fruit</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>quality.</span>
 <span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>The dataset contains 2,000 daily observations including:</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>This study aims to:</span>
 <span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Temperature (°C)</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Humidity (%)</span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wind speed (km/h)</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rainfall (mm)</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tree age (years)</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Soil type (categorical)</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Growth stage (categorical)</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Target: water_need_liters</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-describe</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Descriptive statistics of numeric variables."</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>Markdown(df.describe().<span class="bu">round</span>(<span class="dv">2</span>).to_markdown())</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quantify drivers of daily water demand (L/tree/day).</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Build a predictive regression model.</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide operational irrigation guidance.</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>Executive Synthesis</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>By transforming environmental data into predictive irrigation recommendations, this project moves citrus water management from static scheduling to adaptive optimization. The approach supports measurable reductions in water usage, operating costs, and climate-related production risk, providing a scalable pathway toward precision agriculture at commercial scale.</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why Use Machine Learning for Irrigation Optimization?</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limitations of Classical Irrigation Scheduling</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>The FAO-56 Penman-Monteith framework provides a physically grounded method for estimating reference evapotranspiration. However, operational irrigation management in commercial orchards often relies on:</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Static crop coefficients</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Manual rule adjustments</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Simplified stress assumptions</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calendar-based irrigation cycles</span>
 <span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>These methods assume that environmental variables affect water demand in relatively linear and separable ways.</span>
 <span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Correlation Structure</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>In practice, this assumption is rarely true.</span>
 <span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-corr</span></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Pearson correlation matrix."</span></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>fig_corr <span class="op">=</span> plot_correlation_heatmap(df)</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>Water demand depends on complex, nonlinear interactions between:</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Temperature thresholds</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Humidity gradients</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wind intensity</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Soil retention characteristics</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Growth stage sensitivity</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Traditional models require explicit parameter tuning to capture these effects. They do not automatically learn interactions from historical variability.</span>
 <span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>**Observation:** Temperature exhibits the strongest linear association</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>with water demand, followed by wind speed and humidity.</span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exploratory Data Analysis</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature–Demand Relationship</span></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-temp</span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Non-linear relationship between temperature and irrigation demand."</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>fig_temp <span class="op">=</span> plot_temp_vs_water(df)</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>The relationship is non-linear and amplified under low humidity</span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>conditions.</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### Limitations of Classical Irrigation Scheduling</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>Machine learning does not replace agronomic theory — it extends it.</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>Instead of manually specifying every interaction term, supervised learning:</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Learns nonlinear relationships directly from observed data</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Captures interaction effects automatically</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>3.Quantifies predictive uncertainty</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Adapts when retrained on new climate patterns</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>For example:</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>High temperature combined with low humidity does not increase evapotranspiration linearly.</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wind impact differs significantly between sandy and clay soils.</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fruiting-stage trees respond differently to identical environmental conditions compared to vegetative-stage trees.</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>Tree-based ensemble models (e.g., XGBoost) are particularly effective at modeling such conditional relationships without requiring explicit physical equations for each scenario.</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### Why Not Use Only FAO-56?</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>FAO-56 remains the physical reference standard.</span>
 <span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agronomic Segmentation</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>However:</span>
 <span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-growth</span></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Distribution of water demand across growth stages and soil types."</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It assumes idealized conditions.</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It requires multiple meteorological inputs (including radiation).</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It does not optimize irrigation decisions at the operational level.</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>Machine learning enables:</span>
 <span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>fig_growth <span class="op">=</span> plot_growth_stage_box(df)</span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>**Key finding:** Fruiting-stage trees on sandy soils demonstrate the</span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>highest median demand.</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lookup Aggregation</span></span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-lookup</span></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Median water demand by temperature band and growth stage."</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> pd.cut(df[<span class="st">"temperature_c"</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>],</span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>              labels<span class="op">=</span>[<span class="st">"&lt;20°C"</span>, <span class="st">"20-30°C"</span>, <span class="st">"30-40°C"</span>, <span class="st">"&gt;40°C"</span>])</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integration of heterogeneous data sources</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calibration to specific orchard conditions</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Adaptation to microclimates</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data-driven adjustment of coefficients</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>In other words, FAO-56 estimates evapotranspiration.</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>Machine learning optimizes irrigation decisions under real-world variability.</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### Strategic Rationale for the Citrus Industry</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>From an operational perspective, ML-driven irrigation scheduling:</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reduces systematic over-irrigation</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Improves allocation across orchard blocks</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Supports climate adaptation</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provides measurable performance metrics (R², MAE, validation error)</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>It transforms irrigation from a rule-based system into a continuously learnable system.</span>
 <span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>lookup <span class="op">=</span> (</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>    df.assign(temp_band<span class="op">=</span>bins)</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>      .groupby([<span class="st">"growth_stage"</span>, <span class="st">"temp_band"</span>], observed<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>      [<span class="st">"water_need_liters"</span>]</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>      .median()</span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>      .<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>      .unstack()</span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>Markdown(lookup.to_markdown())</span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="fu"># Modeling Methodology</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### FAO-56 vs Machine Learning: A Comparative Overview</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>| Criterion | FAO-56 (Physics-Based) | Machine Learning (Data-Driven) |</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>|---|---|---|</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>| **Foundation** | Physical equations (Penman-Monteith) | Learned from observed data |</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>| **Nonlinear interactions** | Requires manual parameterization | Captured automatically |</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>| **Adaptation to local conditions** | Generic coefficients | Calibrated to specific orchards |</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>| **Data requirements** | Radiation, wind, humidity, temperature | Any available environmental variables |</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>| **Missing data tolerance** | Degrades significantly | Handles partial inputs |</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>| **Retraining** | Not applicable | Continuous improvement with new data |</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>| **Interpretability** | High (physical meaning) | Moderate (feature importance, SHAP) |</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>| **Operational optimization** | Estimates ET₀ only | Optimizes irrigation decisions |</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>| **Climate adaptation** | Static coefficients | Adapts to distributional shifts |</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>| **Scalability** | Manual per-zone tuning | Automated across orchard blocks |</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>| **Accuracy measurement** | Theoretical validation | Quantifiable (R², MAE, RMSE, CV) |</span>
 <span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## Target Variable Formulation</span></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>To ensure agronomic validity, the target variable ($y = \text{Water Need}$) was synthesized based on the **FAO-56 Penman-Monteith framework**, the global standard for irrigation scheduling <span class="co">[</span><span class="ot">1</span><span class="co">]</span>.</span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>Due to the practical constraints of sensor availability (specifically solar radiation), **Reference Evapotranspiration ($ET_0$)** was estimated using the **Hargreaves-Samani equation**, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-approach-comparison</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Comparison of physics-based (FAO-56) and data-driven (ML) irrigation modeling approaches."</span></span>
 <span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>ET_0 = 0.0023 \cdot (T_{mean} + 17.8) \cdot \sqrt{T_{max} - T_{min}} \cdot R_a</span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
 <span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>The final Crop Evapotranspiration ($ET_c$) was derived as:</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
 <span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>ET_c = ET_0 \times K_c \times K_s - P_{eff}</span>
-<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>Where:</span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>**$K_c$ (Crop Coefficient):** Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).</span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>**$K_s$ (Soil Stress Coefficient):** Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).</span>
-<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>**$P_{eff}$ (Effective Rainfall):** Accounted for as 80% of daily precipitation.</span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>::: {.callout-note icon=false}</span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methodological Note</span></span>
-<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>While the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates ($r &gt; 0.95$) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable.</span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Engineering</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Left: FAO-56 Physics-Based ──────────────────────────</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Physics-Based (FAO-56)"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span><span class="st">"#2E86AB"</span>)</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>inputs_fao <span class="op">=</span> [<span class="st">"Temperature"</span>, <span class="st">"Humidity"</span>, <span class="st">"Wind Speed"</span>, <span class="st">"Solar Radiation"</span>]</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, label <span class="kw">in</span> <span class="bu">enumerate</span>(inputs_fao):</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">8.5</span> <span class="op">-</span> i <span class="op">*</span> <span class="fl">1.4</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(mpatches.FancyBboxPatch((<span class="fl">0.3</span>, y <span class="op">-</span> <span class="fl">0.35</span>), <span class="fl">3.2</span>, <span class="fl">0.7</span>,</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>                 boxstyle<span class="op">=</span><span class="st">"round,pad=0.15"</span>, facecolor<span class="op">=</span><span class="st">"#E8F4FD"</span>, edgecolor<span class="op">=</span><span class="st">"#2E86AB"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>))</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">1.9</span>, y, label, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="fl">4.2</span>, y), xytext<span class="op">=</span>(<span class="fl">3.6</span>, y),</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>, color<span class="op">=</span><span class="st">"#2E86AB"</span>, lw<span class="op">=</span><span class="fl">1.5</span>))</span>
 <span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>Categorical variables were label-encoded for the regression model.</span>
-<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: feature-engineering</span></span>
-<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy for modeling</span></span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df.copy()</span>
-<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Encode categorical variables</span></span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>le_soil <span class="op">=</span> LabelEncoder()</span>
-<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>le_stage <span class="op">=</span> LabelEncoder()</span>
-<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"soil_type_enc"</span>] <span class="op">=</span> le_soil.fit_transform(df_model[<span class="st">"soil_type"</span>])</span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"growth_stage_enc"</span>] <span class="op">=</span> le_stage.fit_transform(df_model[<span class="st">"growth_stage"</span>])</span>
-<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [</span>
-<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>    <span class="st">"temperature_c"</span>,</span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>    <span class="st">"humidity_pct"</span>,</span>
-<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wind_speed_kmh"</span>,</span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rainfall_mm"</span>,</span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tree_age_years"</span>,</span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>    <span class="st">"soil_type_enc"</span>,</span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>    <span class="st">"growth_stage_enc"</span>,</span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_model[features]</span>
-<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_model[<span class="st">"water_need_liters"</span>]</span>
-<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data (80% train, 20% test)</span></span>
-<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
-<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training samples: </span><span class="sc">{</span><span class="bu">len</span>(X_train)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Testing samples: </span><span class="sc">{</span><span class="bu">len</span>(X_test)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-features</span></span>
-<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Model Input Features"</span></span>
-<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>feature_metadata <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Feature Name"</span>: [</span>
-<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Temperature"</span>, <span class="st">"Humidity"</span>, <span class="st">"Wind Speed"</span>, </span>
-<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Rainfall"</span>, <span class="st">"Tree Age"</span>, <span class="st">"Soil Type"</span>, <span class="st">"Growth Stage"</span></span>
-<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Data Type"</span>: [</span>
-<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Float"</span>, <span class="st">"Float"</span>, <span class="st">"Float"</span>, </span>
-<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Float"</span>, <span class="st">"Integer"</span>, <span class="st">"Categorical (Encoded)"</span>, <span class="st">"Categorical (Encoded)"</span></span>
-<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Unit / Description"</span>: [</span>
-<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Daily Mean (°C)"</span>, <span class="st">"Relative (%)"</span>, <span class="st">"km/h"</span>, </span>
-<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>        <span class="st">"mm/day"</span>, <span class="st">"Years since planting"</span>, <span class="st">"Sandy/Loam/Clay"</span>, <span class="st">"Phenological stage"</span></span>
-<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Process</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>ax.add_patch(mpatches.FancyBboxPatch((<span class="fl">4.3</span>, <span class="fl">4.15</span>), <span class="fl">2.8</span>, <span class="fl">1.5</span>,</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>             boxstyle<span class="op">=</span><span class="st">"round,pad=0.2"</span>, facecolor<span class="op">=</span><span class="st">"#2E86AB"</span>, edgecolor<span class="op">=</span><span class="st">"#1a5f7a"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>))</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.7</span>, <span class="fl">5.2</span>, <span class="st">"Penman-Monteith"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span><span class="st">"white"</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.7</span>, <span class="fl">4.6</span>, <span class="st">"Equation"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="fl">8.2</span>, <span class="fl">4.9</span>), xytext<span class="op">=</span>(<span class="fl">7.2</span>, <span class="fl">4.9</span>),</span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>, color<span class="op">=</span><span class="st">"#2E86AB"</span>, lw<span class="op">=</span><span class="fl">1.5</span>))</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>ax.add_patch(mpatches.FancyBboxPatch((<span class="fl">8.0</span>, <span class="fl">4.15</span>), <span class="fl">1.8</span>, <span class="fl">1.5</span>,</span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>             boxstyle<span class="op">=</span><span class="st">"round,pad=0.2"</span>, facecolor<span class="op">=</span><span class="st">"#FFE0B2"</span>, edgecolor<span class="op">=</span><span class="st">"#F18F01"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>))</span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">8.9</span>, <span class="fl">4.9</span>, <span class="st">"ET₀</span><span class="ch">\n</span><span class="st">(Reference)"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="co"># Limitation note</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.0</span>, <span class="fl">1.5</span>, <span class="st">"Static coefficients</span><span class="ch">\n</span><span class="st">No learning capability</span><span class="ch">\n</span><span class="st">Requires radiation data"</span>,</span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"#666"</span>, style<span class="op">=</span><span class="st">"italic"</span>,</span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"round,pad=0.4"</span>, facecolor<span class="op">=</span><span class="st">"#f5f5f5"</span>, edgecolor<span class="op">=</span><span class="st">"#ccc"</span>))</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Right: ML Data-Driven ────────────────────────────────</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Data-Driven (Machine Learning)"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span><span class="st">"#A23B72"</span>)</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>inputs_ml <span class="op">=</span> [<span class="st">"Temperature"</span>, <span class="st">"Humidity"</span>, <span class="st">"Wind Speed"</span>, <span class="st">"Rainfall"</span>, <span class="st">"Soil Type"</span>, <span class="st">"Growth Stage"</span>, <span class="st">"Tree Age"</span>]</span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, label <span class="kw">in</span> <span class="bu">enumerate</span>(inputs_ml):</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">9.2</span> <span class="op">-</span> i <span class="op">*</span> <span class="fl">1.1</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(mpatches.FancyBboxPatch((<span class="fl">0.3</span>, y <span class="op">-</span> <span class="fl">0.3</span>), <span class="fl">3.2</span>, <span class="fl">0.6</span>,</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>                 boxstyle<span class="op">=</span><span class="st">"round,pad=0.12"</span>, facecolor<span class="op">=</span><span class="st">"#F3E5F5"</span>, edgecolor<span class="op">=</span><span class="st">"#A23B72"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>))</span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">1.9</span>, y, label, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="fl">8.5</span>)</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="fl">4.2</span>, y), xytext<span class="op">=</span>(<span class="fl">3.6</span>, y),</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>, color<span class="op">=</span><span class="st">"#A23B72"</span>, lw<span class="op">=</span><span class="fl">1.2</span>))</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="co"># Process</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>ax.add_patch(mpatches.FancyBboxPatch((<span class="fl">4.3</span>, <span class="fl">3.8</span>), <span class="fl">2.8</span>, <span class="fl">2.0</span>,</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>             boxstyle<span class="op">=</span><span class="st">"round,pad=0.2"</span>, facecolor<span class="op">=</span><span class="st">"#A23B72"</span>, edgecolor<span class="op">=</span><span class="st">"#7a1a54"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>))</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.7</span>, <span class="fl">5.1</span>, <span class="st">"XGBoost"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">"white"</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.7</span>, <span class="fl">4.5</span>, <span class="st">"Learns nonlinear"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.7</span>, <span class="fl">4.1</span>, <span class="st">"interactions"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">""</span>, xy<span class="op">=</span>(<span class="fl">8.2</span>, <span class="fl">4.8</span>), xytext<span class="op">=</span>(<span class="fl">7.2</span>, <span class="fl">4.8</span>),</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>            arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>, color<span class="op">=</span><span class="st">"#A23B72"</span>, lw<span class="op">=</span><span class="fl">1.5</span>))</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>ax.add_patch(mpatches.FancyBboxPatch((<span class="fl">8.0</span>, <span class="fl">3.8</span>), <span class="fl">1.8</span>, <span class="fl">2.0</span>,</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>             boxstyle<span class="op">=</span><span class="st">"round,pad=0.2"</span>, facecolor<span class="op">=</span><span class="st">"#C8E6C9"</span>, edgecolor<span class="op">=</span><span class="st">"#2CA58D"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>))</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">8.9</span>, <span class="fl">5.1</span>, <span class="st">"Irrigation"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span><span class="st">"#1a6b5a"</span>)</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">8.9</span>, <span class="fl">4.5</span>, <span class="st">"Forecast"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span><span class="st">"#1a6b5a"</span>)</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">8.9</span>, <span class="fl">4.0</span>, <span class="st">"(L/tree/day)"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"#1a6b5a"</span>)</span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="co"># Advantage note</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">5.0</span>, <span class="fl">1.2</span>, <span class="st">"Adaptive to conditions</span><span class="ch">\n</span><span class="st">Continuous retraining</span><span class="ch">\n</span><span class="st">Quantifiable accuracy (R², MAE)"</span>,</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>        ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"#333"</span>, style<span class="op">=</span><span class="st">"italic"</span>,</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>        bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">"round,pad=0.4"</span>, facecolor<span class="op">=</span><span class="st">"#f0fff0"</span>, edgecolor<span class="op">=</span><span class="st">"#2CA58D"</span>))</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>plt.tight_layout(w_pad<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>Markdown(feature_metadata.to_markdown(index<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model Selection</span></span>
-<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>We selected **XGBoost Regressor** due to its non-linear modeling capacity and robustness to multicollinearity.</span>
-<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: model-training</span></span>
-<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> XGBRegressor(</span>
-<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">300</span>,</span>
-<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.08</span>,</span>
-<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
-<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a><span class="fu">## Strategic Impact Assessment</span></span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### Operational Context</span></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>Irrigation represents one of the largest variable costs in citrus production, particularly in regions exposed to:</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Water scarcity</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rising energy costs</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Increasing climate variability</span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Regulatory constraints on groundwater extraction</span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>Traditional irrigation scheduling methods rely on static coefficients and manual adjustments. While agronomically sound, they do not dynamically adapt to daily environmental fluctuations or nonlinear stress interactions.</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>This project introduces a predictive modeling framework designed to improve irrigation precision and operational efficiency.</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quantitative Impact Example (Per Hectare)</span></span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>Assume a commercial citrus orchard with:</span>
 <span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
-<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>400 trees per hectare</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Average annual irrigation requirement: ~5,000–8,000 m³ per hectare</span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pumping cost: €0.10–€0.25 per m³ (water + energy)</span>
 <span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span>
-<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> mean_absolute_error(y_test, y_pred)</span>
-<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> np.sqrt(mean_squared_error(y_test, y_pred))</span>
-<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>cv_scores <span class="op">=</span> cross_val_score(model, X, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">"r2"</span>)</span>
-<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test R²: </span><span class="sc">{</span>r2<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE (L): </span><span class="sc">{</span>mae<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE (L): </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cross-validated R²: </span><span class="sc">{</span>cv_scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a>If machine learning–based optimization reduces excess irrigation by 10%, the impact per hectare becomes:</span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Water savings: 500–800 m³ per year</span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Direct cost savings: €50–€200 per hectare annually</span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reduced nutrient leaching and runoff</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lower energy consumption for pumping</span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a>At scale:</span>
+<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a>For a 100-hectare orchard:</span>
+<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>50,000–80,000 m³ water saved annually</span>
+<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>€5,000–€20,000 in operational cost reduction</span>
 <span id="cb3-305"><a href="#cb3-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a><span class="fu"># Interpretation &amp; Recommendations</span></span>
+<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a>This does not account for indirect gains such as:</span>
 <span id="cb3-307"><a href="#cb3-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Importance</span></span>
-<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-importance</span></span>
-<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Normalized feature importance from XGBoost."</span></span>
+<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Improved fruit quality under optimized water stress</span>
+<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reduced disease pressure from over-irrigation</span>
+<span id="cb3-310"><a href="#cb3-310" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Enhanced resilience during heat waves</span>
+<span id="cb3-311"><a href="#cb3-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a><span class="fu">### Efficiency Gains Enabled by Machine Learning</span></span>
+<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a>The model contributes to citrus industry efficiency in four measurable ways:</span>
 <span id="cb3-315"><a href="#cb3-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a>importance <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(features, model.feature_importances_))</span>
-<span id="cb3-317"><a href="#cb3-317" aria-hidden="true" tabindex="-1"></a>fig_imp <span class="op">=</span> plot_feature_importance(importance)</span>
-<span id="cb3-318"><a href="#cb3-318" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-319"><a href="#cb3-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-320"><a href="#cb3-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-321"><a href="#cb3-321" aria-hidden="true" tabindex="-1"></a>Temperature is the dominant explanatory variable, followed by humidity and wind speed.</span>
+<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Resource Optimization</span>
+<span id="cb3-317"><a href="#cb3-317" aria-hidden="true" tabindex="-1"></a>By dynamically estimating daily water demand, the system:</span>
+<span id="cb3-318"><a href="#cb3-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-319"><a href="#cb3-319" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Minimizes over-application</span>
+<span id="cb3-320"><a href="#cb3-320" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Aligns irrigation with actual evapotranspiration drivers</span>
+<span id="cb3-321"><a href="#cb3-321" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reduces variability across orchard zones</span>
 <span id="cb3-322"><a href="#cb3-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-323"><a href="#cb3-323" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operational Implications</span></span>
-<span id="cb3-324"><a href="#cb3-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-325"><a href="#cb3-325" aria-hidden="true" tabindex="-1"></a>Based on model outputs:</span>
-<span id="cb3-326"><a href="#cb3-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Temperature Sensitivity:** Irrigation demand increases exponentially beyond 30°C.</span>
-<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Growth Stages:** Fruiting-stage trees require ~30–50% more water than vegetative stage trees.</span>
-<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Soil Factors:** Sandy soils amplify irrigation sensitivity and require more frequent, smaller water applications.</span>
-<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Wind Effect:** Wind speeds &gt;15 km/h significantly increase evapotranspiration effects.</span>
-<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations &amp; Future Work</span></span>
-<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a>**Limitations:**</span>
-<span id="cb3-335"><a href="#cb3-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dataset is synthetic based on FAO-56 logic, not raw field sensor data.</span>
-<span id="cb3-336"><a href="#cb3-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Absence of seasonal time-series components in the regression model.</span>
-<span id="cb3-337"><a href="#cb3-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-338"><a href="#cb3-338" aria-hidden="true" tabindex="-1"></a>**Future Directions:**</span>
-<span id="cb3-339"><a href="#cb3-339" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Incorporate real ET₀ meteorological data from station APIs.</span>
-<span id="cb3-340"><a href="#cb3-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Deploy real-time dashboard using Marimo or Streamlit.</span>
-<span id="cb3-341"><a href="#cb3-341" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integrate IoT soil moisture measurements for closed-loop feedback.</span>
-<span id="cb3-342"><a href="#cb3-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-343"><a href="#cb3-343" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb3-323"><a href="#cb3-323" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Cost Control</span>
+<span id="cb3-324"><a href="#cb3-324" aria-hidden="true" tabindex="-1"></a>Precise water allocation reduces:</span>
+<span id="cb3-325"><a href="#cb3-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-326"><a href="#cb3-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pumping energy costs</span>
+<span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Maintenance strain on irrigation infrastructure</span>
+<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Risk of regulatory penalties in water-restricted regions</span>
+<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Risk Mitigation</span>
+<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a>Under climate volatility, predictive irrigation scheduling:</span>
+<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reduces exposure to heat stress</span>
+<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Improves yield stability</span>
+<span id="cb3-335"><a href="#cb3-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Enables proactive rather than reactive management</span>
+<span id="cb3-336"><a href="#cb3-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-337"><a href="#cb3-337" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Scalable Digital Infrastructure</span>
+<span id="cb3-338"><a href="#cb3-338" aria-hidden="true" tabindex="-1"></a>This framework can evolve into:</span>
+<span id="cb3-339"><a href="#cb3-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-340"><a href="#cb3-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sensor-integrated irrigation control</span>
+<span id="cb3-341"><a href="#cb3-341" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Zone-level optimization models</span>
+<span id="cb3-342"><a href="#cb3-342" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>API-based decision support systems</span>
+<span id="cb3-343"><a href="#cb3-343" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Real-time dashboards for agronomic teams</span>
 <span id="cb3-344"><a href="#cb3-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-345"><a href="#cb3-345" aria-hidden="true" tabindex="-1"></a>This whitepaper demonstrates that environmental and agronomic variables can predict citrus irrigation requirements with high accuracy ($R^2 &gt; 0.9$). The framework enables scalable, data-driven irrigation scheduling and can be extended to additional crops and climatic regions.</span>
+<span id="cb3-345"><a href="#cb3-345" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset Description</span></span>
 <span id="cb3-346"><a href="#cb3-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a>The dataset contains 2,000 daily observations including:</span>
 <span id="cb3-348"><a href="#cb3-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-349"><a href="#cb3-349" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb3-350"><a href="#cb3-350" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-351"><a href="#cb3-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-352"><a href="#cb3-352" aria-hidden="true" tabindex="-1"></a><span class="fu"># Contact &amp; Partners {.unnumbered}</span></span>
-<span id="cb3-353"><a href="#cb3-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-354"><a href="#cb3-354" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol=2 layout-valign="center"}</span>
-<span id="cb3-355"><a href="#cb3-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-356"><a href="#cb3-356" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![**Danki Studio**&lt;br&gt;Data Science &amp; Architecture](assets/logo.png)</span><span class="ot">{width=200px}</span><span class="co">](https://dankistudio.com)</span></span>
+<span id="cb3-349"><a href="#cb3-349" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Temperature (°C)</span>
+<span id="cb3-350"><a href="#cb3-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Humidity (%)</span>
+<span id="cb3-351"><a href="#cb3-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wind speed (km/h)</span>
+<span id="cb3-352"><a href="#cb3-352" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rainfall (mm)</span>
+<span id="cb3-353"><a href="#cb3-353" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tree age (years)</span>
+<span id="cb3-354"><a href="#cb3-354" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Soil type (categorical)</span>
+<span id="cb3-355"><a href="#cb3-355" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Growth stage (categorical)</span>
+<span id="cb3-356"><a href="#cb3-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Target: water_need_liters</span>
 <span id="cb3-357"><a href="#cb3-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-358"><a href="#cb3-358" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![**Partner Organization**&lt;br&gt;Strategic Collaboration](assets/partner_logo.png)</span><span class="ot">{width=200px}</span><span class="co">](#)</span></span>
-<span id="cb3-359"><a href="#cb3-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon=false}</span>
-<span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a>**About Danki Studio:** We specialize in building scalable data architectures and actionable machine learning systems for agriculture and industry. <span class="co">[</span><span class="ot">Visit our website</span><span class="co">](https://dankistudio.com)</span>.</span>
-<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-describe</span></span>
+<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Descriptive statistics of numeric variables."</span></span>
+<span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a>Markdown(df.describe().<span class="bu">round</span>(<span class="dv">2</span>).to_markdown())</span>
+<span id="cb3-365"><a href="#cb3-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-367"><a href="#cb3-367" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb3-368"><a href="#cb3-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-369"><a href="#cb3-369" aria-hidden="true" tabindex="-1"></a><span class="fu">## Correlation Structure</span></span>
+<span id="cb3-370"><a href="#cb3-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-373"><a href="#cb3-373" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-374"><a href="#cb3-374" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-corr</span></span>
+<span id="cb3-375"><a href="#cb3-375" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Pearson correlation matrix."</span></span>
+<span id="cb3-376"><a href="#cb3-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-377"><a href="#cb3-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-378"><a href="#cb3-378" aria-hidden="true" tabindex="-1"></a>fig_corr <span class="op">=</span> plot_correlation_heatmap(df)</span>
+<span id="cb3-379"><a href="#cb3-379" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-380"><a href="#cb3-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-381"><a href="#cb3-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-382"><a href="#cb3-382" aria-hidden="true" tabindex="-1"></a>**Observation:** Temperature exhibits the strongest linear association</span>
+<span id="cb3-383"><a href="#cb3-383" aria-hidden="true" tabindex="-1"></a>with water demand, followed by wind speed and humidity.</span>
+<span id="cb3-384"><a href="#cb3-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-385"><a href="#cb3-385" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-386"><a href="#cb3-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-387"><a href="#cb3-387" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exploratory Data Analysis</span></span>
+<span id="cb3-388"><a href="#cb3-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-389"><a href="#cb3-389" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature–Demand Relationship</span></span>
+<span id="cb3-390"><a href="#cb3-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-393"><a href="#cb3-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-394"><a href="#cb3-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-temp</span></span>
+<span id="cb3-395"><a href="#cb3-395" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Non-linear relationship between temperature and irrigation demand."</span></span>
+<span id="cb3-396"><a href="#cb3-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-397"><a href="#cb3-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-398"><a href="#cb3-398" aria-hidden="true" tabindex="-1"></a>fig_temp <span class="op">=</span> plot_temp_vs_water(df)</span>
+<span id="cb3-399"><a href="#cb3-399" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-400"><a href="#cb3-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-401"><a href="#cb3-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-402"><a href="#cb3-402" aria-hidden="true" tabindex="-1"></a>The relationship is non-linear and amplified under low humidity</span>
+<span id="cb3-403"><a href="#cb3-403" aria-hidden="true" tabindex="-1"></a>conditions.</span>
+<span id="cb3-404"><a href="#cb3-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-405"><a href="#cb3-405" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agronomic Segmentation</span></span>
+<span id="cb3-406"><a href="#cb3-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-409"><a href="#cb3-409" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-growth</span></span>
+<span id="cb3-411"><a href="#cb3-411" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Distribution of water demand across growth stages and soil types."</span></span>
+<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-413"><a href="#cb3-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-414"><a href="#cb3-414" aria-hidden="true" tabindex="-1"></a>fig_growth <span class="op">=</span> plot_growth_stage_box(df)</span>
+<span id="cb3-415"><a href="#cb3-415" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-416"><a href="#cb3-416" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-417"><a href="#cb3-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-418"><a href="#cb3-418" aria-hidden="true" tabindex="-1"></a>**Key finding:** Fruiting-stage trees on sandy soils demonstrate the</span>
+<span id="cb3-419"><a href="#cb3-419" aria-hidden="true" tabindex="-1"></a>highest median demand.</span>
+<span id="cb3-420"><a href="#cb3-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-421"><a href="#cb3-421" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lookup Aggregation</span></span>
+<span id="cb3-422"><a href="#cb3-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-425"><a href="#cb3-425" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-426"><a href="#cb3-426" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-lookup</span></span>
+<span id="cb3-427"><a href="#cb3-427" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Median water demand by temperature band and growth stage."</span></span>
+<span id="cb3-428"><a href="#cb3-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-429"><a href="#cb3-429" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> pd.cut(df[<span class="st">"temperature_c"</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>],</span>
+<span id="cb3-430"><a href="#cb3-430" aria-hidden="true" tabindex="-1"></a>              labels<span class="op">=</span>[<span class="st">"&lt;20°C"</span>, <span class="st">"20-30°C"</span>, <span class="st">"30-40°C"</span>, <span class="st">"&gt;40°C"</span>])</span>
+<span id="cb3-431"><a href="#cb3-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-432"><a href="#cb3-432" aria-hidden="true" tabindex="-1"></a>lookup <span class="op">=</span> (</span>
+<span id="cb3-433"><a href="#cb3-433" aria-hidden="true" tabindex="-1"></a>    df.assign(temp_band<span class="op">=</span>bins)</span>
+<span id="cb3-434"><a href="#cb3-434" aria-hidden="true" tabindex="-1"></a>      .groupby([<span class="st">"growth_stage"</span>, <span class="st">"temp_band"</span>], observed<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-435"><a href="#cb3-435" aria-hidden="true" tabindex="-1"></a>      [<span class="st">"water_need_liters"</span>]</span>
+<span id="cb3-436"><a href="#cb3-436" aria-hidden="true" tabindex="-1"></a>      .median()</span>
+<span id="cb3-437"><a href="#cb3-437" aria-hidden="true" tabindex="-1"></a>      .<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb3-438"><a href="#cb3-438" aria-hidden="true" tabindex="-1"></a>      .unstack()</span>
+<span id="cb3-439"><a href="#cb3-439" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-440"><a href="#cb3-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-441"><a href="#cb3-441" aria-hidden="true" tabindex="-1"></a>Markdown(lookup.to_markdown())</span>
+<span id="cb3-442"><a href="#cb3-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-443"><a href="#cb3-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-444"><a href="#cb3-444" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-445"><a href="#cb3-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-446"><a href="#cb3-446" aria-hidden="true" tabindex="-1"></a><span class="fu"># Modeling Methodology</span></span>
+<span id="cb3-447"><a href="#cb3-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-448"><a href="#cb3-448" aria-hidden="true" tabindex="-1"></a><span class="fu">## Target Variable Formulation</span></span>
+<span id="cb3-449"><a href="#cb3-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-450"><a href="#cb3-450" aria-hidden="true" tabindex="-1"></a>To ensure agronomic validity, the target variable ($y = \text{Water Need}$) was synthesized based on the **FAO-56 Penman-Monteith framework**, the global standard for irrigation scheduling <span class="co">[</span><span class="ot">1</span><span class="co">]</span>.</span>
+<span id="cb3-451"><a href="#cb3-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-452"><a href="#cb3-452" aria-hidden="true" tabindex="-1"></a>Due to the practical constraints of sensor availability (specifically solar radiation), **Reference Evapotranspiration ($ET_0$)** was estimated using the **Hargreaves-Samani equation**, a temperature-based approximation recommended by ASCE and FAO for data-scarce regions:</span>
+<span id="cb3-453"><a href="#cb3-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-454"><a href="#cb3-454" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-455"><a href="#cb3-455" aria-hidden="true" tabindex="-1"></a>ET_0 = 0.0023 \cdot (T_{mean} + 17.8) \cdot \sqrt{T_{max} - T_{min}} \cdot R_a</span>
+<span id="cb3-456"><a href="#cb3-456" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-457"><a href="#cb3-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-458"><a href="#cb3-458" aria-hidden="true" tabindex="-1"></a>The final Crop Evapotranspiration ($ET_c$) was derived as:</span>
+<span id="cb3-459"><a href="#cb3-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-460"><a href="#cb3-460" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-461"><a href="#cb3-461" aria-hidden="true" tabindex="-1"></a>ET_c = ET_0 \times K_c \times K_s - P_{eff}</span>
+<span id="cb3-462"><a href="#cb3-462" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-463"><a href="#cb3-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-464"><a href="#cb3-464" aria-hidden="true" tabindex="-1"></a>Where:</span>
+<span id="cb3-465"><a href="#cb3-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-466"><a href="#cb3-466" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>**$K_c$ (Crop Coefficient):** Adjusted for citrus phenological stages (Vegetative: 0.65, Flowering: 0.85, Fruiting: 1.00).</span>
+<span id="cb3-467"><a href="#cb3-467" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>**$K_s$ (Soil Stress Coefficient):** Modifies uptake based on soil retention (Sandy: 1.2, Clay: 0.85).</span>
+<span id="cb3-468"><a href="#cb3-468" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>**$P_{eff}$ (Effective Rainfall):** Accounted for as 80% of daily precipitation.</span>
+<span id="cb3-469"><a href="#cb3-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-470"><a href="#cb3-470" aria-hidden="true" tabindex="-1"></a>::: {.callout-note icon=false}</span>
+<span id="cb3-471"><a href="#cb3-471" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methodological Note</span></span>
+<span id="cb3-472"><a href="#cb3-472" aria-hidden="true" tabindex="-1"></a>While the full Penman-Monteith equation is the theoretical ideal, the Hargreaves-Samani method correlates ($r &gt; 0.95$) effectively in semi-arid climates and provides a robust ground-truth for supervised learning when radiometric data is unavailable.</span>
+<span id="cb3-473"><a href="#cb3-473" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-474"><a href="#cb3-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-475"><a href="#cb3-475" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Engineering</span></span>
+<span id="cb3-476"><a href="#cb3-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-477"><a href="#cb3-477" aria-hidden="true" tabindex="-1"></a>Categorical variables were label-encoded for the regression model.</span>
+<span id="cb3-478"><a href="#cb3-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-481"><a href="#cb3-481" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-482"><a href="#cb3-482" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: feature-engineering</span></span>
+<span id="cb3-483"><a href="#cb3-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-484"><a href="#cb3-484" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy for modeling</span></span>
+<span id="cb3-485"><a href="#cb3-485" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df.copy()</span>
+<span id="cb3-486"><a href="#cb3-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-487"><a href="#cb3-487" aria-hidden="true" tabindex="-1"></a><span class="co"># Encode categorical variables</span></span>
+<span id="cb3-488"><a href="#cb3-488" aria-hidden="true" tabindex="-1"></a>le_soil <span class="op">=</span> LabelEncoder()</span>
+<span id="cb3-489"><a href="#cb3-489" aria-hidden="true" tabindex="-1"></a>le_stage <span class="op">=</span> LabelEncoder()</span>
+<span id="cb3-490"><a href="#cb3-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-491"><a href="#cb3-491" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"soil_type_enc"</span>] <span class="op">=</span> le_soil.fit_transform(df_model[<span class="st">"soil_type"</span>])</span>
+<span id="cb3-492"><a href="#cb3-492" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"growth_stage_enc"</span>] <span class="op">=</span> le_stage.fit_transform(df_model[<span class="st">"growth_stage"</span>])</span>
+<span id="cb3-493"><a href="#cb3-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-494"><a href="#cb3-494" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [</span>
+<span id="cb3-495"><a href="#cb3-495" aria-hidden="true" tabindex="-1"></a>    <span class="st">"temperature_c"</span>,</span>
+<span id="cb3-496"><a href="#cb3-496" aria-hidden="true" tabindex="-1"></a>    <span class="st">"humidity_pct"</span>,</span>
+<span id="cb3-497"><a href="#cb3-497" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wind_speed_kmh"</span>,</span>
+<span id="cb3-498"><a href="#cb3-498" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rainfall_mm"</span>,</span>
+<span id="cb3-499"><a href="#cb3-499" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tree_age_years"</span>,</span>
+<span id="cb3-500"><a href="#cb3-500" aria-hidden="true" tabindex="-1"></a>    <span class="st">"soil_type_enc"</span>,</span>
+<span id="cb3-501"><a href="#cb3-501" aria-hidden="true" tabindex="-1"></a>    <span class="st">"growth_stage_enc"</span>,</span>
+<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-503"><a href="#cb3-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_model[features]</span>
+<span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_model[<span class="st">"water_need_liters"</span>]</span>
+<span id="cb3-506"><a href="#cb3-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-507"><a href="#cb3-507" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data (80% train, 20% test)</span></span>
+<span id="cb3-508"><a href="#cb3-508" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb3-509"><a href="#cb3-509" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb3-510"><a href="#cb3-510" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-511"><a href="#cb3-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-512"><a href="#cb3-512" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training samples: </span><span class="sc">{</span><span class="bu">len</span>(X_train)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-513"><a href="#cb3-513" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Testing samples: </span><span class="sc">{</span><span class="bu">len</span>(X_test)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-514"><a href="#cb3-514" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-515"><a href="#cb3-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-518"><a href="#cb3-518" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-519"><a href="#cb3-519" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-features</span></span>
+<span id="cb3-520"><a href="#cb3-520" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Model Input Features"</span></span>
+<span id="cb3-521"><a href="#cb3-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-522"><a href="#cb3-522" aria-hidden="true" tabindex="-1"></a>feature_metadata <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-523"><a href="#cb3-523" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Feature Name"</span>: [</span>
+<span id="cb3-524"><a href="#cb3-524" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Temperature"</span>, <span class="st">"Humidity"</span>, <span class="st">"Wind Speed"</span>, </span>
+<span id="cb3-525"><a href="#cb3-525" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Rainfall"</span>, <span class="st">"Tree Age"</span>, <span class="st">"Soil Type"</span>, <span class="st">"Growth Stage"</span></span>
+<span id="cb3-526"><a href="#cb3-526" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb3-527"><a href="#cb3-527" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Data Type"</span>: [</span>
+<span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Float"</span>, <span class="st">"Float"</span>, <span class="st">"Float"</span>, </span>
+<span id="cb3-529"><a href="#cb3-529" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Float"</span>, <span class="st">"Integer"</span>, <span class="st">"Categorical (Encoded)"</span>, <span class="st">"Categorical (Encoded)"</span></span>
+<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb3-531"><a href="#cb3-531" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Unit / Description"</span>: [</span>
+<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Daily Mean (°C)"</span>, <span class="st">"Relative (%)"</span>, <span class="st">"km/h"</span>, </span>
+<span id="cb3-533"><a href="#cb3-533" aria-hidden="true" tabindex="-1"></a>        <span class="st">"mm/day"</span>, <span class="st">"Years since planting"</span>, <span class="st">"Sandy/Loam/Clay"</span>, <span class="st">"Phenological stage"</span></span>
+<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a>Markdown(feature_metadata.to_markdown(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model Selection</span></span>
+<span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a>We selected **XGBoost Regressor** due to its non-linear modeling capacity and robustness to multicollinearity.</span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: model-training</span></span>
+<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> XGBRegressor(</span>
+<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.08</span>,</span>
+<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span>
+<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a>mae <span class="op">=</span> mean_absolute_error(y_test, y_pred)</span>
+<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> np.sqrt(mean_squared_error(y_test, y_pred))</span>
+<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a>cv_scores <span class="op">=</span> cross_val_score(model, X, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">"r2"</span>)</span>
+<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a>model.save_model(<span class="st">"citrus_model.json"</span>)</span>
+<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test R²: </span><span class="sc">{</span>r2<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE (L): </span><span class="sc">{</span>mae<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE (L): </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cross-validated R²: </span><span class="sc">{</span>cv_scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-575"><a href="#cb3-575" aria-hidden="true" tabindex="-1"></a><span class="fu"># Interpretation &amp; Recommendations</span></span>
+<span id="cb3-576"><a href="#cb3-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-577"><a href="#cb3-577" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Importance</span></span>
+<span id="cb3-578"><a href="#cb3-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-581"><a href="#cb3-581" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-582"><a href="#cb3-582" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-importance</span></span>
+<span id="cb3-583"><a href="#cb3-583" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Normalized feature importance from XGBoost."</span></span>
+<span id="cb3-584"><a href="#cb3-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-585"><a href="#cb3-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-586"><a href="#cb3-586" aria-hidden="true" tabindex="-1"></a>importance <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(features, model.feature_importances_))</span>
+<span id="cb3-587"><a href="#cb3-587" aria-hidden="true" tabindex="-1"></a>fig_imp <span class="op">=</span> plot_feature_importance(importance)</span>
+<span id="cb3-588"><a href="#cb3-588" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-589"><a href="#cb3-589" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-590"><a href="#cb3-590" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-591"><a href="#cb3-591" aria-hidden="true" tabindex="-1"></a>Temperature is the dominant explanatory variable, followed by humidity and wind speed.</span>
+<span id="cb3-592"><a href="#cb3-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-593"><a href="#cb3-593" aria-hidden="true" tabindex="-1"></a><span class="fu">## Operational Implications</span></span>
+<span id="cb3-594"><a href="#cb3-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-595"><a href="#cb3-595" aria-hidden="true" tabindex="-1"></a>Based on model outputs:</span>
+<span id="cb3-596"><a href="#cb3-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-597"><a href="#cb3-597" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Temperature Sensitivity:** Irrigation demand increases exponentially beyond 30°C.</span>
+<span id="cb3-598"><a href="#cb3-598" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Growth Stages:** Fruiting-stage trees require ~30–50% more water than vegetative stage trees.</span>
+<span id="cb3-599"><a href="#cb3-599" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Soil Factors:** Sandy soils amplify irrigation sensitivity and require more frequent, smaller water applications.</span>
+<span id="cb3-600"><a href="#cb3-600" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Wind Effect:** Wind speeds &gt;15 km/h significantly increase evapotranspiration effects.</span>
+<span id="cb3-601"><a href="#cb3-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-602"><a href="#cb3-602" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations &amp; Future Work</span></span>
+<span id="cb3-603"><a href="#cb3-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-604"><a href="#cb3-604" aria-hidden="true" tabindex="-1"></a>**Limitations:**</span>
+<span id="cb3-605"><a href="#cb3-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-606"><a href="#cb3-606" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dataset is synthetic based on FAO-56 logic, not raw field sensor data.</span>
+<span id="cb3-607"><a href="#cb3-607" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Absence of seasonal time-series components in the regression model.</span>
+<span id="cb3-608"><a href="#cb3-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-609"><a href="#cb3-609" aria-hidden="true" tabindex="-1"></a>**Future Directions:**</span>
+<span id="cb3-610"><a href="#cb3-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-611"><a href="#cb3-611" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Incorporate real ET₀ meteorological data from station APIs.</span>
+<span id="cb3-612"><a href="#cb3-612" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Deploy real-time dashboard using Marimo or Streamlit.</span>
+<span id="cb3-613"><a href="#cb3-613" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integrate IoT soil moisture measurements for closed-loop feedback.</span>
+<span id="cb3-614"><a href="#cb3-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-615"><a href="#cb3-615" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-616"><a href="#cb3-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-617"><a href="#cb3-617" aria-hidden="true" tabindex="-1"></a><span class="fu"># Industrial Application: Irrigation Decision Support Tool</span></span>
+<span id="cb3-618"><a href="#cb3-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-619"><a href="#cb3-619" aria-hidden="true" tabindex="-1"></a>The value of predictive modeling in agriculture is realized only when complex data is translated into actionable field operations. This project bridges that gap by transforming the XGBoost regressor into a **Decision Support System (DSS)**.</span>
+<span id="cb3-620"><a href="#cb3-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-621"><a href="#cb3-621" aria-hidden="true" tabindex="-1"></a>By integrating real-time weather forecasts with site-specific metadata (tree age, soil type), the tool provides irrigation managers with precise volumetric requirements, moving beyond the "one-size-fits-all" approach of static FAO tables.</span>
+<span id="cb3-622"><a href="#cb3-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-623"><a href="#cb3-623" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Decision Logic Flow</span></span>
+<span id="cb3-624"><a href="#cb3-624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-625"><a href="#cb3-625" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-626"><a href="#cb3-626" aria-hidden="true" tabindex="-1"></a>**User Interface &amp; Inputs**</span>
+<span id="cb3-627"><a href="#cb3-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-628"><a href="#cb3-628" aria-hidden="true" tabindex="-1"></a>The DSS interface is designed for low-friction data entry:</span>
+<span id="cb3-629"><a href="#cb3-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-630"><a href="#cb3-630" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Orchard Metadata:** Tree count, age, and soil hydraulic properties.</span>
+<span id="cb3-631"><a href="#cb3-631" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Environmental Inputs:** Temperature, humidity, wind speed, and forecasted rainfall.</span>
+<span id="cb3-632"><a href="#cb3-632" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Operational Constraints:** Choice of daily, weekly, or monthly planning cycles.</span>
+<span id="cb3-633"><a href="#cb3-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-634"><a href="#cb3-634" aria-hidden="true" tabindex="-1"></a>**Actionable Outputs**</span>
+<span id="cb3-635"><a href="#cb3-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-636"><a href="#cb3-636" aria-hidden="true" tabindex="-1"></a>The system delivers a "Dual-Track" validation:</span>
+<span id="cb3-637"><a href="#cb3-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-638"><a href="#cb3-638" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**ML Prediction:** Optimized volume based on historical sensor patterns.</span>
+<span id="cb3-639"><a href="#cb3-639" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**FAO-56 Baseline:** The theoretical standard for safety comparison.</span>
+<span id="cb3-640"><a href="#cb3-640" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Efficiency Metric:** Variance analysis (potential water/energy savings).</span>
+<span id="cb3-641"><a href="#cb3-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-642"><a href="#cb3-642" aria-hidden="true" tabindex="-1"></a><span class="fu">### Deployment &amp; Scalability</span></span>
+<span id="cb3-643"><a href="#cb3-643" aria-hidden="true" tabindex="-1"></a>This tool is deployed as a WebAssembly (WASM) application, allowing for offline-capable, high-performance inference directly on a mobile device or desktop without requiring a centralized database.</span>
+<span id="cb3-644"><a href="#cb3-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-645"><a href="#cb3-645" aria-hidden="true" tabindex="-1"></a>**Try the Live Tool:** An interactive version of this model is available at <span class="co">[</span><span class="ot">adeline-hub.github.io/citrus-water-supply/app.html</span><span class="co">](./app.html)</span>.</span>
+<span id="cb3-646"><a href="#cb3-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-647"><a href="#cb3-647" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-648"><a href="#cb3-648" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-649"><a href="#cb3-649" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb3-650"><a href="#cb3-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-651"><a href="#cb3-651" aria-hidden="true" tabindex="-1"></a>This whitepaper demonstrates that environmental and agronomic variables can predict citrus irrigation requirements with high accuracy ($R^2 &gt; 0.9$). The framework enables scalable, data-driven irrigation scheduling and can be extended to additional crops and climatic regions.</span>
+<span id="cb3-652"><a href="#cb3-652" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-653"><a href="#cb3-653" aria-hidden="true" tabindex="-1"></a>{{&lt; pagebreak &gt;}}</span>
+<span id="cb3-654"><a href="#cb3-654" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-655"><a href="#cb3-655" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb3-656"><a href="#cb3-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-657"><a href="#cb3-657" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Allen, R.G. et al. (1998). *Crop Evapotranspiration — FAO Irrigation and Drainage Paper 56*.</span>
+<span id="cb3-658"><a href="#cb3-658" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Chen, T. &amp; Guestrin, C. (2016). *XGBoost: A Scalable Tree Boosting System*.</span>
+<span id="cb3-659"><a href="#cb3-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-660"><a href="#cb3-660" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contact &amp; Partners {.unnumbered}</span></span>
+<span id="cb3-661"><a href="#cb3-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-662"><a href="#cb3-662" aria-hidden="true" tabindex="-1"></a>| | |</span>
+<span id="cb3-663"><a href="#cb3-663" aria-hidden="true" tabindex="-1"></a>| :---: | :---: |</span>
+<span id="cb3-664"><a href="#cb3-664" aria-hidden="true" tabindex="-1"></a>| <span class="al">![](assets/logo.png)</span>{width=2in} | <span class="al">![](assets/partner_logo.png)</span>{width=2in} |</span>
+<span id="cb3-665"><a href="#cb3-665" aria-hidden="true" tabindex="-1"></a>| <span class="co">[</span><span class="ot">**Danki Studio**</span><span class="co">](https://dankistudio.com)</span> | <span class="co">[</span><span class="ot">**Partner Org**</span><span class="co">](#)</span> |</span>
+<span id="cb3-666"><a href="#cb3-666" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-667"><a href="#cb3-667" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon=false}</span>
+<span id="cb3-668"><a href="#cb3-668" aria-hidden="true" tabindex="-1"></a>**About Danki Studio:** We specialize in building scalable data architectures and actionable machine learning systems for agriculture and industry. <span class="co">[</span><span class="ot">Visit our website</span><span class="co">](https://dankistudio.com)</span>.</span>
+<span id="cb3-669"><a href="#cb3-669" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

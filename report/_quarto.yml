@@ -1,13 +1,16 @@
 project:
   type: website
   output-dir: ../docs
-
+  resources:
+    - assets/
 website:
-  title: "🍊 Citrus Water Supply Report"
+  title: "Citrus Water Supply Report"
   navbar:
     left:
       - href: index.qmd
         text: Report
+      - href: app.html
+        text: "Calculator"
     right:
       - icon: github
         href: https://github.com/<USERNAME>/citrus-water-supply
